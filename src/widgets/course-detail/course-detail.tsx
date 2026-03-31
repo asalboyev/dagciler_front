@@ -40,7 +40,7 @@ export function CourseDetail() {
         <section className={styles.features}>
           <div className={styles.container}>
             <AnimateOnScroll>
-              <HtmlContent html={school!.content1!} className={styles.featuresGrid} />
+              <HtmlContent html={school!?.content1!} className={styles.featuresGrid} />
             </AnimateOnScroll>
           </div>
           <div className={styles.container}>
