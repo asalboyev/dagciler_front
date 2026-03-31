@@ -1,0 +1,52 @@
+@use "@/shared/styles/variables" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.85;
+
+    .image {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 416 / 297;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform $transition-slow;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #64748b;
+}
+
+.title {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-text;
+  @include line-clamp(2);
+}

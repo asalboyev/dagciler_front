@@ -1,0 +1,556 @@
+@use "@/shared/styles/variables" as *;
+
+.wrapper {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+
+  @include responsive($breakpoint-md) {
+    gap: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+// ─── History Section ────────────────────────────────────
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 847px;
+  margin: 0 auto;
+}
+
+.historyHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.eyebrow {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+}
+
+.sectionTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+.historyBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 847px;
+}
+
+.historyHtml {
+  h2 {
+    font-family: $font-family-heading;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 100%;
+    color: #0F172A;
+    margin-bottom: 16px;
+
+    span {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    @include responsive($breakpoint-md) {
+      font-size: 24px;
+    }
+  }
+
+  > p {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #0F172A;
+    max-width: 660px;
+
+    span {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
+
+  figure.table {
+    margin-top: 24px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 16px 0;
+    background: #F8FAFC;
+    border-radius: 24px;
+    overflow: hidden;
+
+    @include responsive($breakpoint-sm) {
+      border-spacing: 0;
+    }
+  }
+
+  tbody {
+    tr:first-child {
+      td {
+        padding: 24px 32px 0;
+        vertical-align: top;
+
+        p {
+          margin: 0;
+        }
+
+        strong {
+          font-family: $font-family-heading;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 100%;
+          color: #0F172A;
+        }
+
+        @include responsive($breakpoint-sm) {
+          padding: 16px 16px 0;
+        }
+      }
+    }
+
+    tr:last-child {
+      td {
+        padding: 16px 32px 24px;
+        vertical-align: top;
+
+        @include responsive($breakpoint-sm) {
+          padding: 12px 16px 16px;
+        }
+      }
+    }
+  }
+
+  td {
+    border: none !important;
+    width: 50%;
+
+    @include responsive($breakpoint-sm) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @include responsive($breakpoint-sm) {
+    tr {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #0F172A;
+
+    &::before {
+      content: "";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.4917 1.66675H6.50835C3.47502 1.66675 1.66669 3.47508 1.66669 6.50841V13.4834C1.66669 16.5251 3.47502 18.3334 6.50835 18.3334H13.4834C16.5167 18.3334 18.325 16.5251 18.325 13.4917V6.50841C18.3334 3.47508 16.525 1.66675 13.4917 1.66675ZM12.325 10.4417L9.38335 13.3834C9.25835 13.5084 9.10002 13.5667 8.94169 13.5667C8.78335 13.5667 8.62502 13.5084 8.50002 13.3834C8.25835 13.1417 8.25835 12.7417 8.50002 12.5001L11 10.0001L8.50002 7.50008C8.25835 7.25841 8.25835 6.85841 8.50002 6.61675C8.74169 6.37508 9.14169 6.37508 9.38335 6.61675L12.325 9.55841C12.575 9.80008 12.575 10.2001 12.325 10.4417Z' fill='%23D41B2C'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    span {
+      font-family: inherit;
+      font-size: inherit;
+    }
+  }
+}
+
+.historyText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+// ─── Atmosphere Section ─────────────────────────────────
+.atmosphere {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.atmosphereHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 848px;
+  margin: 0 auto !important;
+}
+
+.atmosphereSubtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+}
+
+.atmosphereImages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.atmosphereImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 417 / 317;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.atmosphereImage {
+  object-fit: cover;
+}
+
+.atmosphereTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 848px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.atmosphereText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  width: 100%;
+}
+
+// ─── Teachers Section ───────────────────────────────────
+.teachers {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.teachersHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 848px;
+  margin: 0 auto;
+}
+
+.teachersSubtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-bg-dark;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+}
+
+.teachersCarousel {
+  width: 100%;
+}
+
+.teacherSlide {
+  height: auto;
+}
+
+.teacherCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.teacherImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 308 / 360;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.teacherImage {
+  object-fit: cover;
+}
+
+.teacherBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  z-index: 1;
+}
+
+.teacherInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.teacherName {
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.teacherRole {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+// ─── Gallery Section ───────────────────────────────────
+.gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.galleryTop {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.galleryHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 848px;
+  margin: 0 auto;
+}
+
+.gallerySubtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+  margin: 0 auto;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+}
+
+.galleryTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 848px;
+}
+
+.galleryText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.galleryImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 417 / 317;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.galleryImage {
+  object-fit: cover;
+}
+
+// ─── CTA Heading ───────────────────────────────────────
+.ctaHeading {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+
+  @include responsive($breakpoint-md) {
+    font-size: 28px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 24px;
+  }
+}
+
+.ctaBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+  background-color: #ebebeb;
+  border-radius: 24px;
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+.ctaSubtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+}
+
+.ctaButtons {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  @include responsive($breakpoint-sm) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.ctaBtnPrimary {
+  width: 380px;
+
+  @include responsive($breakpoint-lg) {
+    width: auto;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 100%;
+  }
+}
+
+.ctaBtnOutline {
+  width: 231px;
+  color: $color-bg-dark;
+  border: 1px solid $color-bg-dark;
+  background: transparent;
+
+  @include responsive($breakpoint-lg) {
+    width: auto;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 100%;
+  }
+}
+
+.bannerTitle {
+  font-family: Unbounded;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 2rem);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.atmosphereHtml {
+  td {
+    border: none !important;
+  }
+}

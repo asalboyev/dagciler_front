@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(config|rc|json|ts\\)$\")",
+      "Bash(curl -s \"https://admin3.ndc-agency.uz/api/siteinfo\")",
+      "Bash(curl -s -X POST \"https://admin3.ndc-agency.uz/api/zapis\" -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"\"\"\"name\"\"\"\":\"\"\"\"Test\"\"\"\",\"\"\"\"phone_number\"\"\"\":\"\"\"\"+998901234567\"\"\"\",\"\"\"\"message\"\"\"\":\"\"\"\"\"\"\"\",\"\"\"\"type\"\"\"\":\"\"\"\"booking\"\"\"\",\"\"\"\"page\"\"\"\":\"\"\"\"site\"\"\"\"}')",
+      "Bash(curl -s -X POST \"https://admin3.ndc-agency.uz/api/zapis\" -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"\"\"\"name\"\"\"\":\"\"\"\"Test\"\"\"\",\"\"\"\"phone_number\"\"\"\":\"\"\"\"+998901234567\"\"\"\",\"\"\"\"message\"\"\"\":\"\"\"\"test\"\"\"\",\"\"\"\"type\"\"\"\":\"\"\"\"booking\"\"\"\",\"\"\"\"page\"\"\"\":\"\"\"\"site\"\"\"\"}')",
+      "Bash(curl -s \"https://admin3.ndc-agency.uz/api/about-schools\")",
+      "Bash(curl -s \"https://admin3.ndc-agency.uz/api/settings\")",
+      "Bash(curl -s \"https://admin3.ndc-agency.uz/api/config\")",
+      "Bash(curl -s \"https://admin3.ndc-agency.uz/api/banners\")",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:api.telegram.org)",
+      "Bash(ls d:/E/proj/vsoft/dagcilfer/.env*)"
+    ]
+  }
+}

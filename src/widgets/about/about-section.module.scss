@@ -1,0 +1,358 @@
+@use "@/shared/styles/variables" as *;
+
+// ─── Section ─────────────────────────────────────────────
+.section {
+  padding: 64px 0;
+
+  @include responsive($breakpoint-md) {
+    padding: 40px 0;
+  }
+}
+
+.container {
+  @include container;
+}
+
+// ─── Header row ──────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  @include responsive($breakpoint-md) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.headerText {
+  max-width: 796px;
+}
+
+.eyebrow {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+  margin-bottom: 8px;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-lg) {
+    font-size: 28px;
+  }
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+// ─── Social links ────────────────────────────────────────
+.socials {
+  display: flex;
+  align-items: center;
+
+  gap: 60px;
+  flex-shrink: 0;
+
+  @include responsive($breakpoint-lg) {
+    gap: 32px;
+  }
+}
+
+.socialItem {
+  display: flex;
+  gap: 16px;
+  text-decoration: none;
+  transition: opacity $transition-fast;
+  align-items: center;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.socialTop {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.socialName {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.socialLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #000;
+}
+
+// ─── Cards grid ──────────────────────────────────────────
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.animateWrapper {
+  height: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cardImg {
+  object-fit: cover;
+  transition: opacity $transition-base;
+}
+
+.cardImgHidden {
+  opacity: 0;
+}
+
+.cardVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity $transition-base;
+}
+
+.cardVideoActive {
+  opacity: 1;
+}
+
+.cardIframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.cardTitle {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  color: #fff;
+  z-index: 1;
+  transition: bottom $transition-base;
+}
+
+// ─── Hover: title up + button appears ────────────────────
+.telegramButton {
+  position: absolute;
+  bottom: -50px;
+  left: 16px;
+  right: 16px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 12px;
+  background-color: $color-text;
+  border-radius: 8.52px;
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10.65px;
+  color: #fff;
+  text-decoration: none;
+  transition: bottom $transition-base, background-color $transition-fast;
+
+  &:hover {
+    background-color: lighten($color-text, 10%);
+  }
+}
+
+.cardImage:hover .cardTitle {
+  bottom: 70px;
+}
+
+.cardImage:hover .telegramButton {
+  bottom: 16px;
+}
+
+.cardDescriptionWrap {
+  position: relative;
+}
+
+.measureHidden {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  width: 100%;
+  margin: 0;
+  @include line-clamp(3);
+}
+
+.cardDescription {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $color-text-secondary;
+  margin: 0;
+
+  @include responsive($breakpoint-sm) {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.showMoreBtn {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  color: $color-red;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @include responsive($breakpoint-sm) {
+    display: none;
+  }
+}
+
+// ─── CTA Banner ──────────────────────────────────────────
+.ctaBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+  background-color: #ebebeb;
+  border-radius: 24px;
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+.ctaSubtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+}
+
+.ctaButtons {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  @include responsive($breakpoint-sm) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.ctaBtnPrimary {
+  width: 380px;
+
+  @include responsive($breakpoint-lg) {
+    width: auto;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 100%;
+  }
+}
+
+.ctaBtnOutline {
+  width: 231px;
+
+  @include responsive($breakpoint-lg) {
+    width: auto;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 100%;
+  }
+}

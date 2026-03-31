@@ -1,0 +1,440 @@
+@use "@/shared/styles/variables" as *;
+
+// ─── Container ─────────────────────────────────────────
+.container {
+  @include container;
+}
+
+// ─── About ─────────────────────────────────────────────
+.about {
+  padding: 64px 0 0;
+
+  @include responsive($breakpoint-md) {
+    padding: 40px 0 0;
+  }
+}
+
+.aboutInner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 796px;
+  margin: 0 auto;
+}
+
+.aboutTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+.aboutText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $color-text;
+  max-width: 660px;
+}
+
+.aboutNote {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: $color-text-secondary;
+  max-width: 660px;
+}
+
+// ─── Features ──────────────────────────────────────────
+.features {
+  padding: 30px 0;
+  max-width: 796px;
+  margin: 0 auto;
+
+  .container {
+    padding: 0 !important;
+  }
+
+  @include responsive($breakpoint-md) {
+    padding: 24px 0 40px;
+  }
+}
+
+.featuresGrid {
+  @include container;
+  gap: 16px;
+  padding-left: 0;
+  padding-right: 0;
+
+  h2 {
+    // font-family: $font-family-heading;
+    // font-weight: 600;
+    // font-size: 32px;
+    // line-height: 100%;
+    // color: #0F172A;
+    // margin-bottom: 16px;
+    font-family: $font-family;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 24px;
+    line-height: 100%;
+
+    &:nth-child(2) {
+      font-family: $font-family;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 16px;
+      line-height: 100%;
+    }
+
+    span {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    @include responsive($breakpoint-md) {
+      font-size: 24px;
+    }
+  }
+
+  >p {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #0F172A;
+    max-width: 660px;
+
+    span {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
+
+  figure.table {
+    margin-top: 24px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 16px 0;
+    background: transparent;
+
+    @include responsive($breakpoint-sm) {
+      border-spacing: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  tbody {
+    @include responsive($breakpoint-sm) {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  tr {
+    @include responsive($breakpoint-sm) {
+      display: contents;
+    }
+  }
+
+  td {
+    border: none !important;
+    width: 50%;
+    background: #F8FAFC;
+    padding: 24px 32px;
+    vertical-align: top;
+
+    p {
+      margin: 0;
+    }
+
+    strong {
+      font-family: $font-family-heading;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 100%;
+      color: #0F172A;
+    }
+
+    @include responsive($breakpoint-sm) {
+      width: 100%;
+      padding: 16px;
+    }
+  }
+
+  // Mobile: reorder cells so header1+list1 come before header2+list2
+  // tr1 has td:nth-child(1)=header1, td:nth-child(2)=header2
+  // tr2 has td:nth-child(1)=list1, td:nth-child(2)=list2
+  // Desired order: header1(1), list1(2), header2(3), list2(4)
+  @include responsive($breakpoint-sm) {
+    tr:first-child td:first-child {
+      order: 1;
+      border-radius: 16px 16px 0 0;
+      padding-bottom: 8px;
+    }
+
+    tr:last-child td:first-child {
+      order: 2;
+      border-radius: 0 0 16px 16px;
+      padding-top: 0;
+      margin-bottom: 12px;
+    }
+
+    tr:first-child td:last-child {
+      order: 3;
+      border-radius: 16px 16px 0 0;
+      padding-bottom: 8px;
+    }
+
+    tr:last-child td:last-child {
+      order: 4;
+      border-radius: 0 0 16px 16px;
+      padding-top: 0;
+    }
+
+    // Single-row tables (content2 stages)
+    tr:first-child:last-child td:first-child {
+      order: 1;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 16px;
+    }
+
+    tr:first-child:last-child td:last-child {
+      order: 2;
+      border-radius: 16px;
+      margin-bottom: 0;
+      padding-bottom: 16px;
+    }
+  }
+
+  // Desktop: merge header row + list row into one card per column
+  tbody {
+    tr:first-child td {
+      border-radius: 24px 24px 0 0;
+      padding-bottom: 16px;
+      padding-top: 24px;
+    }
+
+    tr:last-child td {
+      border-radius: 0 0 24px 24px;
+      padding-top: 0;
+    }
+
+    tr:first-child:last-child td {
+      border-radius: 16px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #0F172A;
+
+    &::before {
+      content: "";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.4917 1.66675H6.50835C3.47502 1.66675 1.66669 3.47508 1.66669 6.50841V13.4834C1.66669 16.5251 3.47502 18.3334 6.50835 18.3334H13.4834C16.5167 18.3334 18.325 16.5251 18.325 13.4917V6.50841C18.3334 3.47508 16.525 1.66675 13.4917 1.66675ZM12.325 10.4417L9.38335 13.3834C9.25835 13.5084 9.10002 13.5667 8.94169 13.5667C8.78335 13.5667 8.62502 13.5084 8.50002 13.3834C8.25835 13.1417 8.25835 12.7417 8.50002 12.5001L11 10.0001L8.50002 7.50008C8.25835 7.25841 8.25835 6.85841 8.50002 6.61675C8.74169 6.37508 9.14169 6.37508 9.38335 6.61675L12.325 9.55841C12.575 9.80008 12.575 10.2001 12.325 10.4417Z' fill='%23D41B2C'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    span {
+      font-family: inherit;
+      font-size: inherit;
+    }
+  }
+}
+
+// Stages grid (content2) — each td is a separate card, no merging
+.stagesGrid {
+  table {
+    border-spacing: 16px;
+
+    @include responsive($breakpoint-sm) {
+      border-spacing: 0;
+    }
+  }
+
+  td {
+    border-radius: 16px !important;
+    padding: 16px 24px !important;
+  }
+
+  // Override the mobile reordering — just stack naturally
+  @include responsive($breakpoint-sm) {
+
+    tr:first-child td:first-child,
+    tr:first-child td:last-child,
+    tr:last-child td:first-child,
+    tr:last-child td:last-child {
+      order: unset;
+      border-radius: 16px !important;
+      margin-bottom: 0;
+      padding: 16px !important;
+    }
+
+    tbody {
+      gap: 12px;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  background-color: #f1f5f9;
+  border-radius: 16px;
+  height: 100%;
+}
+
+.featureHeading {
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.featureDot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: $color-red;
+  margin-top: 3px;
+}
+
+.featureText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $color-text;
+}
+
+// ─── Program ───────────────────────────────────────────
+.program {
+  padding: 64px 0;
+  border-top: 1px solid $color-border;
+
+  .container {
+    padding: 0 !important;
+  }
+
+  @include responsive($breakpoint-md) {
+    padding: 40px 0;
+  }
+}
+
+.programTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+  max-width: 796px;
+  margin-bottom: 11px;
+  margin: 0 auto;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+.programGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 796px;
+  margin: 0 auto;
+  margin-top: 51px;
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stageCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 16px;
+}
+
+.stageTitle {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.stageItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.stageItem {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  padding: 2px 0;
+}

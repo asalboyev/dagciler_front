@@ -1,0 +1,73 @@
+@use "@/shared/styles/variables" as *;
+
+.footer {
+  background-color: #171717;
+  padding: 64px 0;
+
+  @include responsive($breakpoint-md) {
+    padding: 40px 0;
+  }
+}
+
+.container {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include responsive($breakpoint-md) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @include responsive($breakpoint-md) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @include responsive($breakpoint-md) {
+    align-items: center;
+  }
+}
+
+.phoneNumber {
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+}
+
+.phoneLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cta {
+  width: 380px;
+
+  @include responsive($breakpoint-md) {
+    width: 100%;
+  }
+}

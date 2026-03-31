@@ -1,0 +1,39 @@
+@use "@/shared/styles/variables" as *;
+
+.breadcrumb {
+  padding: $spacing-md 0;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.separator {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.link {
+  color: $color-text-light;
+  font-size: $font-size-sm;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.current {
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: 500;
+}

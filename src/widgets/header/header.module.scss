@@ -1,0 +1,288 @@
+@use "@/shared/styles/variables" as *;
+
+// ─── Header ──────────────────────────────────────────────
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-header;
+  padding-top: 16px;
+  transition: background-color $transition-base, padding-top $transition-base;
+
+  &.innerPage {
+    color: #fff !important;
+  }
+}
+
+.scrolled {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #fff;
+}
+
+// ─── Container ───────────────────────────────────────────
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  height: 64px;
+
+  @include responsive($breakpoint-md) {
+    height: 56px;
+  }
+}
+
+// ─── Logo ────────────────────────────────────────────────
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+
+    @include responsive($breakpoint-md) {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+// ─── Navigation ──────────────────────────────────────────
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  @include responsive($breakpoint-lg) {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    background: #000;
+    transform: translateX(100%);
+    transition: transform $transition-base;
+    z-index: $z-modal;
+  }
+}
+
+.navOpen {
+  transform: translateX(0);
+}
+
+.navLink {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  position: relative;
+  transition: opacity $transition-fast;
+  color: inherit;
+
+  @include responsive($breakpoint-lg) {
+    color: #fff;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: $color-red;
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include responsive($breakpoint-lg) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+.active {
+  &::after {
+    transform: scaleX(1);
+  }
+}
+
+// ─── Right Actions ───────────────────────────────────────
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @include responsive($breakpoint-lg) {
+    gap: 12px;
+  }
+}
+
+// ─── Phone ───────────────────────────────────────────────
+.phone {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+
+  @include responsive($breakpoint-xl) {
+    display: none;
+  }
+}
+
+.phoneNumber {
+  font-family: $font-family-heading;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.phoneLabel {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+// ─── CTA Button ──────────────────────────────────────────
+.ctaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 12px 24px;
+  gap: 4px;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #fff;
+  background-color: $color-red;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-red-hover;
+  }
+
+  @include responsive($breakpoint-lg) {
+    height: 44px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    display: none;
+  }
+}
+
+// ─── Burger ──────────────────────────────────────────────
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  gap: 6px;
+  z-index: $z-modal + 1;
+  cursor: pointer;
+
+  @include responsive($breakpoint-lg) {
+    display: flex;
+  }
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+    transition: all $transition-base;
+  }
+}
+
+.burgerOpen {
+  span:nth-child(1) {
+    transform: rotate(45deg) translate(5.5px, 5.5px);
+  }
+
+  span:nth-child(2) {
+    opacity: 0;
+  }
+
+  span:nth-child(3) {
+    transform: rotate(-45deg) translate(5.5px, -5.5px);
+  }
+}
+
+.burgerBlack {
+  span {
+    background: #000; 
+  }
+}
+
+// ─── Mobile Actions (inside nav panel) ───────────────────
+.mobileActions {
+  display: none;
+
+  @include responsive($breakpoint-lg) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 32px;
+  }
+}
+
+.mobilePhone {
+  font-family: $font-family-heading;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobileCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 12px 32px;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: $color-red;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-red-hover;
+  }
+}

@@ -1,0 +1,113 @@
+@use "@/shared/styles/variables" as *;
+
+.banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1284 / 520;
+  border-radius: 24px;
+  overflow: hidden;
+
+  @include responsive($breakpoint-md) {
+    aspect-ratio: 2 / 1;
+    border-radius: 16px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+}
+
+.content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  max-width: 796px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include responsive($breakpoint-md) {
+    bottom: 24px;
+    left: 24px;
+    max-width: 600px;
+    gap: 24px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    gap: 20px;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: clamp(1.375rem, 1.05rem + 1.63vw, 3rem) !important;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-md) {
+    font-size: 36px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 28px;
+  }
+}
+
+.subtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: clamp(1.125rem, 1.05rem + 0.38vw, 1.5rem) !important;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 16px;
+  }
+}
+
+// ─── Actions (optional buttons row) ────────────────────
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @include responsive($breakpoint-sm) {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+
+    > * {
+      width: 100%;
+    }
+  }
+}

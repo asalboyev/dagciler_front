@@ -1,0 +1,123 @@
+@use "@/shared/styles/variables" as *;
+
+// ─── Base ────────────────────────────────────────────────
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  border-radius: 16px;
+  font-family: $font-family-heading;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color $transition-fast, border-color $transition-fast,
+    opacity $transition-fast;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ─── Variants ────────────────────────────────────────────
+.red {
+  background-color: $color-red;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: $color-red-hover;
+  }
+}
+
+.dark {
+  background-color: $color-bg-dark;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: lighten($color-bg-dark, 8%);
+  }
+}
+
+.light {
+  background-color: #f1f5f9;
+  color: $color-text;
+
+  &:hover:not(:disabled) {
+    background-color: darken(#f1f5f9, 5%);
+  }
+}
+
+.outline {
+  background-color: #fff;
+  color: $color-text;
+  // border: 1px solid $color-text;
+
+  &:hover:not(:disabled) {
+    background-color: $color-bg-light;
+  }
+}
+
+// ─── Sizes ───────────────────────────────────────────────
+.sm {
+  height: 44px;
+  padding: 10px 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.md {
+  height: 52px;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.lg {
+  height: 64px;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+// ─── Modifiers ───────────────────────────────────────────
+.fullWidth {
+  width: 100%;
+}
+
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+// ─── Inner elements ──────────────────────────────────────
+.spinner {
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.text {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform $transition-fast;
+
+  .button:hover:not(:disabled) & {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

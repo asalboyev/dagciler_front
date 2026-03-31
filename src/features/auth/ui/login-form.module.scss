@@ -1,0 +1,15 @@
+@use "@/shared/styles/variables" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  max-width: 400px;
+  width: 100%;
+}
+
+.error {
+  color: $color-error;
+  font-size: $font-size-sm;
+  text-align: center;
+}

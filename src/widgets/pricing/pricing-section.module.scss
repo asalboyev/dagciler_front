@@ -1,0 +1,685 @@
+@use "@/shared/styles/variables" as *;
+
+// ─── Section ─────────────────────────────────────────────
+.section {
+  padding: 64px 0;
+
+  @include responsive($breakpoint-md) {
+    padding: 40px 0;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+// ─── Header ─────────────────────────────────────────────
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.headerTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+}
+
+.headerSubtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 16px;
+  }
+}
+
+// ─── Plans grid ─────────────────────────────────────────
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto auto;
+  gap: 16px;
+  padding: 24px 0;
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+// ─── Plan card (shared) ─────────────────────────────────
+.plan {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  padding: 16px 16px 24px;
+  background-color: #f1f5f9;
+  color: $color-text;
+  transition: background-color $transition-base, color $transition-base;
+
+  &:hover {
+    background-color: $color-text;
+    color: #fff;
+
+    .benefitsLabel {
+      color: #fff;
+    }
+
+    .benefitText {
+      color: #fff;
+    }
+
+    .planFooter {
+      border-top-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .priceLabel {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .priceValue {
+      color: #fff;
+    }
+
+    .planBtn {
+      background: #D41B2C;
+      color: #fff;
+    }
+  }
+}
+
+// ─── Plan header block ──────────────────────────────────
+.planHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  background-color: #fff;
+  transition: background-color $transition-base;
+}
+
+.planName {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+  transition: color $transition-base;
+
+  @include responsive($breakpoint-md) {
+    font-size: 20px;
+  }
+}
+
+.planCount {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  color: $color-red;
+}
+
+.planDesc {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+  transition: color $transition-base;
+
+  @include responsive($breakpoint-md) {
+    font-size: 16px;
+  }
+}
+
+
+// ─── Plan benefits ──────────────────────────────────────
+.planBenefits {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 0 16px;
+  flex: 1;
+}
+
+.benefitsLabel {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-red;
+  transition: color $transition-base;
+}
+
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.benefitIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.benefitDot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: $color-red;
+  margin-top: 3px;
+}
+
+.benefitText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: $color-text;
+  transition: color $transition-base;
+}
+
+
+// ─── Plan footer ────────────────────────────────────────
+.planFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: none;
+  background-image: repeating-linear-gradient(to right, #000 0, #000 6px, transparent 6px, transparent 12px);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin: 0 16px;
+  transition: border-top-color $transition-base;
+}
+
+.priceLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+  transition: color $transition-base;
+}
+
+
+.priceValue {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+  transition: color $transition-base;
+
+  @include responsive($breakpoint-md) {
+    font-size: 20px;
+  }
+}
+
+
+.planBtn {
+  width: 100%;
+  max-width: 288px;
+  background: transparent;
+  border: 1px solid #000;
+}
+
+// ─── Special offers ─────────────────────────────────────
+.offersSection {
+  padding: 24px 0 0;
+}
+
+.offersToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #f8fafc;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  gap: 16px;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: darken(#f8fafc, 3%);
+  }
+}
+
+.offersToggleTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+}
+
+.offersToggleAction {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.offersToggleLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-red;
+}
+
+.offersChevron {
+  color: $color-red;
+  transition: transform $transition-base;
+}
+
+.offersChevronOpen {
+  transform: rotate(180deg);
+}
+
+.offersCollapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows $transition-base;
+}
+
+.offersCollapseInner {
+  overflow: hidden;
+}
+
+.offersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  padding-top: 24px;
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+}
+
+// ─── Offer card ─────────────────────────────────────────
+.offerCard {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 16px;
+  padding: 16px 16px 24px;
+  border-radius: 24px 0 24px 0;
+  background-color: #f1f5f9;
+}
+
+.offerHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.offerName {
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+}
+
+.offerDesc {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  text-align: center;
+}
+
+// ─── Offer benefits (white card) ────────────────────────
+.offerBenefitsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.offerBenefitsLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-red;
+}
+
+.offerBenefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.offerBenefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.offerBenefitIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.offerBenefitText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+// ─── Offer footer ───────────────────────────────────────
+.offerFooter {
+  padding-top: 16px;
+  border-top: none;
+  background-image: repeating-linear-gradient(to right, #000 0, #000 6px, transparent 6px, transparent 12px);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: top;
+  text-align: center;
+}
+
+.offerPriceLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+  margin-bottom: 4px;
+}
+
+.offerPrice {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+// ─── Bottom row ─────────────────────────────────────────
+.bottomRow {
+  display: flex;
+  gap: clamp(1.5rem, 0.862rem + 3.19vw, 4.688rem);
+  padding: 48px 0;
+  padding-left: clamp(0rem, -0.737rem + 3.69vw, 3.688rem);
+
+  @include responsive($breakpoint-lg) {
+    flex-direction: column;
+  }
+}
+
+// ─── Gift certificate ───────────────────────────────────
+.giftCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 514px;
+  flex-shrink: 0;
+
+  @include responsive($breakpoint-lg) {
+    width: 100%;
+    max-width: 514px;
+  }
+}
+
+.giftInner {
+  display: flex;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/images/certificate-bg.png') no-repeat center / cover;
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  >* {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.giftBowWrapper {
+  flex-shrink: 0;
+  width: 199px;
+
+  @include responsive($breakpoint-sm) {
+    width: 140px;
+  }
+}
+
+.giftBowImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.giftContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  text-align: center;
+  gap: 4px;
+}
+
+.giftLogo {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.giftTitle {
+  font-family: $font-family-decorative;
+  font-size: 26.64px;
+  font-weight: 400;
+  line-height: 100%;
+  color: $color-text;
+
+  @include responsive($breakpoint-sm) {
+    font-size: 20px;
+  }
+}
+
+.giftSubtitle {
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.giftPrice {
+  font-family: $font-family-heading;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 100%;
+  color: $color-text;
+  margin-top: 8px;
+  background-color: #fff;
+  padding: 6px 50px;
+}
+
+.giftIncludes {
+  font-family: $font-family-decorative;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  color: $color-text;
+  margin-top: 8px;
+}
+
+.giftItems {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 316px;
+}
+
+.giftItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+
+  span {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    color: $color-text;
+
+    @include responsive($breakpoint-sm) {
+      font-size: 14px;
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.giftBtnWrapper {
+  margin-top: 16px;
+}
+
+.giftBtn {
+  background-color: $color-secondary;
+  color: $color-text;
+
+  &:hover:not(:disabled) {
+    background-color: $color-secondary-hover;
+  }
+}
+
+// ─── Payment info ───────────────────────────────────────
+.paymentInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.paymentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.paymentTitle {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.paymentText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #64748b;
+}
+
+.paymentNote {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: $color-text;
+}
+
+.paymentNoteText {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #64748b;
+}

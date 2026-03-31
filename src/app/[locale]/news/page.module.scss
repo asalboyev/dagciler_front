@@ -1,0 +1,157 @@
+@use "@/shared/styles/variables" as *;
+
+/* ── Page wrapper ──────────────────────────────────────── */
+
+.page {
+  padding-bottom: 80px;
+
+  @include responsive($breakpoint-md) {
+    padding-bottom: 48px;
+  }
+}
+
+.container {
+  @include container;
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+
+.hero {
+  padding: 32px 0 48px;
+
+  @include responsive($breakpoint-md) {
+    padding: 24px 0 32px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    padding: 16px 0 24px;
+  }
+}
+
+/* ── Category filter tabs ──────────────────────────────── */
+
+.filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 48px;
+
+  @include responsive($breakpoint-md) {
+    gap: 12px;
+    padding-bottom: 32px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    gap: 8px;
+    padding-bottom: 24px;
+  }
+}
+
+.filterBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  padding: 12px 32px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+
+  background: #f8fafc;
+  color: #0f172a;
+  transition: background $transition-fast, color $transition-fast;
+
+  &:hover {
+    background: #eef2f6;
+  }
+
+  @include responsive($breakpoint-sm) {
+    height: 48px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+.filterBtnActive {
+  background: $color-red;
+  color: #ffffff;
+
+  &:hover {
+    background: $color-red-hover;
+  }
+}
+
+/* ── Posts grid ────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 48px;
+  margin-bottom: 48px;
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+/* ── Load more ─────────────────────────────────────────── */
+
+.loadMoreWrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.loadMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 302px;
+  height: 64px;
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #0f172a;
+
+  background: #f1f5f9;
+  transition: background $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: #e2e8f0;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 100%;
+    height: 56px;
+    font-size: 14px;
+  }
+}

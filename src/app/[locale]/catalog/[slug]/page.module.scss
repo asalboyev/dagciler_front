@@ -1,0 +1,408 @@
+@use "@/shared/styles/variables" as *;
+
+/* ── Page wrapper ──────────────────────────────────────── */
+
+.page {
+  padding-bottom: 80px;
+
+  @include responsive($breakpoint-md) {
+    padding-bottom: 48px;
+  }
+}
+
+/* ── Container ─────────────────────────────────────────── */
+
+.container {
+  @include container;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include responsive($breakpoint-md) {
+    padding-top: 24px;
+    gap: 24px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    padding-top: 16px;
+    gap: 16px;
+  }
+}
+
+/* ── Back button ───────────────────────────────────────── */
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  text-decoration: none;
+  align-self: flex-start;
+
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #0f172a;
+  transition: background $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 14px;
+    height: 44px;
+    padding: 10px 20px;
+  }
+}
+
+/* ── Product area (3 columns) ──────────────────────────── */
+
+.productArea {
+  display: grid;
+  grid-template-columns: 200px 1fr 524px;
+  gap: 16px;
+  align-items: start;
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: 120px 1fr 440px;
+  }
+
+  @include responsive($breakpoint-md) {
+    // thumbnails row on top, then image + card side by side
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "thumbs thumbs"
+      "main   card";
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "main"
+      "thumbs"
+      "card";
+  }
+}
+
+/* ── Thumbnails column ─────────────────────────────────── */
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 734px;
+  overflow: hidden;
+
+  @include responsive($breakpoint-md) {
+    grid-area: thumbs;
+    flex-direction: row;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include responsive($breakpoint-lg) {
+    height: auto;
+    overflow: visible;
+    max-height: 734px;
+    overflow-y: hidden;
+  }
+}
+
+.thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: #cbd5e1;
+  }
+
+  @include responsive($breakpoint-md) {
+    width: 120px;
+    height: 160px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 80px;
+    height: 104px;
+  }
+}
+
+.thumbActive {
+  border-color: #0f172a;
+}
+
+.thumbImage {
+  object-fit: cover;
+  transition: transform $transition-fast;
+}
+
+/* ── Main image ────────────────────────────────────────── */
+
+.mainImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 524 / 734;
+  border-radius: 8px;
+  overflow: hidden;
+
+  @include responsive($breakpoint-md) {
+    grid-area: main;
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-area: main;
+  }
+}
+
+.mainImage {
+  object-fit: cover;
+}
+
+/* ── Info card ─────────────────────────────────────────── */
+
+.infoCard {
+  width: 100%;
+  background: #f1f5f9;
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+
+  @include responsive($breakpoint-md) {
+    grid-area: card;
+    border-radius: 16px;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-area: card;
+    border-radius: 12px;
+    padding: 20px;
+    gap: 20px;
+  }
+}
+
+/* ── Info top (title + description) ───────────────────── */
+
+.infoTop {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infoTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #0f172a;
+
+  @include responsive($breakpoint-md) {
+    font-size: 20px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 18px;
+  }
+}
+
+.infoDesc {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #0f172a;
+
+  @include responsive($breakpoint-sm) {
+    font-size: 14px;
+  }
+}
+
+/* ── Info section (sizes / price) ──────────────────────── */
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionLabel {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #0f172a;
+}
+
+/* ── Size pills ─────────────────────────────────────────── */
+
+.sizesRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sizePill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #ffffff;
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+/* ── Price tag ──────────────────────────────────────────── */
+
+.priceTag {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 10px;
+  border-radius: 50px;
+  background: #ffffff;
+}
+
+.priceValue {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* ── Order button ──────────────────────────────────────── */
+
+.orderBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 64px;
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  background: $color-red;
+
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #ffffff;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-red-hover;
+  }
+
+  @include responsive($breakpoint-md) {
+    width: 100%;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: 100%;
+    height: 56px;
+    font-size: 14px;
+  }
+}
+
+/* ── Related products section ──────────────────────────── */
+
+.related {
+  padding: 80px 0 0;
+
+  @include responsive($breakpoint-md) {
+    padding: 48px 0 0;
+  }
+}
+
+.relatedContainer {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.relatedTitle {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #0f172a;
+  text-align: center;
+
+  @include responsive($breakpoint-md) {
+    font-size: 24px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 20px;
+  }
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* ── Not found ─────────────────────────────────────────── */
+
+.notFound {
+  padding: 80px 0;
+  text-align: center;
+  font-family: $font-family;
+  font-size: 18px;
+  color: $color-text-secondary;
+}

@@ -1,0 +1,9 @@
+@use "@/shared/styles/variables" as *;
+
+.section {
+  padding: $spacing-3xl 0;
+}
+
+.container {
+  @include container;
+}

@@ -1,0 +1,40 @@
+@use "@/shared/styles/variables" as *;
+
+.heading {
+  margin-bottom: $spacing-2xl;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.title {
+  font-size: $font-size-4xl;
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1.2;
+  margin-bottom: $spacing-sm;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+.subtitle {
+  font-size: $font-size-lg;
+  color: $color-text-light;
+  max-width: 600px;
+  line-height: 1.6;
+
+  .center & {
+    margin: 0 auto;
+  }
+}

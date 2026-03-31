@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E '\\\\.\\(ts|tsx|js|jsx|json|css|md\\)$')",
+      "Bash(npm run:*)",
+      "WebFetch(domain:admin3.ndc-agency.uz)",
+      "Bash(curl -k -s \"http://admin3.ndc-agency.uz/api/documentation\")",
+      "Bash(curl -k -s \"http://admin3.ndc-agency.uz/docs\")",
+      "Bash(curl -k -s \"http://admin3.ndc-agency.uz/api/siteinfo\")",
+      "Bash(python -m json.tool)",
+      "Bash(curl -k -s \"http://admin3.ndc-agency.uz/api/banners\")",
+      "Bash(curl -k -s \"http://admin3.ndc-agency.uz/api/posts\")",
+      "Bash(curl -k -s \"http://admin3.ndc-agency.uz/api/file3\")",
+      "Bash(python -c \"import json,sys; data=json.load\\(sys.stdin\\); print\\(data[0][''''text'''']\\)\")",
+      "Bash(curl -s -w \"\\\\nHTTP_STATUS: %{http_code}\" \"https://admin3.ndc-agency.uz/api/tariffs\")",
+      "Bash(curl -s -w \"\\\\nHTTP_STATUS: %{http_code}\" -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Accept-Language: uz\" \"https://admin3.ndc-agency.uz/api/tariffs\")",
+      "Bash(curl -s --max-time 15 \"https://admin3.ndc-agency.uz/api/filials\")",
+      "Bash(curl -s --max-time 15 \"https://admin3.ndc-agency.uz/api/banners\")",
+      "Bash(BASE=\"https://admin3.ndc-agency.uz/api\" for endpoint in videos services members tariffs filials feedbacks posts categories langs siteinfo settings config translations about-schools about-courses banners questions)",
+      "Bash(do echo:*)",
+      "Bash(python3 -c \"import sys,json; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(json.dumps\\(d, indent=2, ensure_ascii=False\\)[:800]\\)\")",
+      "Bash(BASE=\"https://admin3.ndc-agency.uz/api\" for endpoint in videos services members tariffs filials posts categories siteinfo config translations banners)",
+      "Bash(python3 -c \"import sys,json; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(json.dumps\\(d, indent=2, ensure_ascii=False\\)[:1000]\\)\")",
+      "Bash(BASE=\"https://admin3.ndc-agency.uz/api\" echo \"=== /videos ===\")",
+      "Bash(curl -s --max-time 20 \"$BASE/videos\")",
+      "Bash(python3 -c \"import sys,json; print\\(json.dumps\\(json.loads\\(sys.stdin.read\\(\\)\\), indent=2, ensure_ascii=False\\)[:1500]\\)\" echo \"\" echo \"=== /members ===\")",
+      "Bash(curl -s --max-time 20 \"$BASE/members\")",
+      "Bash(python3 -c \"import sys,json; print\\(json.dumps\\(json.loads\\(sys.stdin.read\\(\\)\\), indent=2, ensure_ascii=False\\)[:1500]\\)\")",
+      "Bash(BASE=\"https://admin3.ndc-agency.uz/api\" for ep in videos members tariffs filials posts categories services siteinfo banners)",
+      "Bash(python3 -c \"import sys,json; sys.stdout.reconfigure\\(encoding=''''utf-8''''\\); d=json.loads\\(sys.stdin.buffer.read\\(\\)\\); print\\(json.dumps\\(d, indent=2, ensure_ascii=True\\)[:2000]\\)\" echo \"\" done)",
+      "Bash(curl -s --max-time 15 \"https://admin3.ndc-agency.uz/api/about-courses\")",
+      "Bash(curl -s --max-time 15 \"https://admin3.ndc-agency.uz/api/about-schools\")",
+      "Bash(grep -r onClick d:/E/proj/vsoft/dagcilfer/src/widgets/hero d:/E/proj/vsoft/dagcilfer/src/widgets/about d:/E/proj/vsoft/dagcilfer/src/widgets/reviews --include=*.tsx)",
+      "Bash(grep -r \"open\\\\|isOpen\\\\|visible\\\\|show\\\\|modal\\\\|overlay\\\\|dialog\" d:/E/proj/vsoft/dagcilfer/src/shared/ui -l --include=*.tsx)",
+      "Bash(curl -s --max-time 15 \"https://admin3.ndc-agency.uz/api/siteinfo\")",
+      "Bash(curl -s \"https://admin3.ndc-agency.uz/api/translations\" -H \"Accept-Language: ru\")"
+    ]
+  }
+}

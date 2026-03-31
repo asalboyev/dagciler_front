@@ -1,0 +1,40 @@
+@use "@/shared/styles/variables" as *;
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $color-bg-light 25%,
+    darken($color-bg-light, 3%) 50%,
+    $color-bg-light 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.card {
+  border-radius: $radius-lg;
+  overflow: hidden;
+  border: 1px solid $color-border-light;
+}
+
+.cardBody {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

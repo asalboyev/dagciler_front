@@ -1,0 +1,335 @@
+@use "@/shared/styles/variables" as *;
+
+// ─── Hero wrapper ────────────────────────────────────────
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #040404;
+}
+
+// ─── Swiper ──────────────────────────────────────────────
+.swiper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.heroVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  pointer-events: none;
+
+  @media (min-aspect-ratio: 16/9) {
+    width: 100%;
+    height: 56.25vw;
+    min-height: 100%;
+  }
+
+  @media (max-aspect-ratio: 16/9) {
+    width: 177.78vh;
+    height: 100%;
+    min-width: 100%;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 4, 4, 0.4) 0%,
+    rgba(4, 4, 4, 0.6) 50%,
+    rgba(4, 4, 4, 0.85) 100%
+  );
+}
+
+// ─── Content layer ───────────────────────────────────────
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.container {
+  @include container;
+  width: 100%;
+  padding-bottom: 48px;
+  pointer-events: auto;
+
+  @include responsive($breakpoint-md) {
+    padding-bottom: 32px;
+  }
+}
+
+// ─── Text block ──────────────────────────────────────────
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 796px;
+  margin-bottom: 48px;
+
+  @include responsive($breakpoint-md) {
+    margin-bottom: 32px;
+  }
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-lg) {
+    font-size: 36px;
+  }
+
+  @include responsive($breakpoint-md) {
+    font-size: 28px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 24px;
+  }
+}
+
+.subtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  color: #fff !important;
+
+  @include responsive($breakpoint-lg) {
+    font-size: 20px;
+  }
+
+  @include responsive($breakpoint-md) {
+    font-size: 18px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 16px;
+  }
+}
+
+// ─── Buttons ─────────────────────────────────────────────
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+
+  @include responsive($breakpoint-md) {
+    margin-bottom: 32px;
+  }
+
+  @include responsive(750px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+}
+
+.btnPrimary {
+  width: 380px;
+
+  @include responsive($breakpoint-lg) {
+    width: auto;
+    flex: 1;
+  }
+}
+
+.btnOutline {
+  width: 302px;
+  background: transparent !important;
+  border-color: #fff !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  @include responsive($breakpoint-lg) {
+    width: auto;
+    flex: 1;
+  }
+}
+
+// ─── Bottom row (stats + branches) ──────────────────────
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include responsive($breakpoint-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+}
+
+// ─── Stats ───────────────────────────────────────────────
+.stats {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+
+  @include responsive($breakpoint-lg) {
+    gap: 40px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    gap: 32px;
+  }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-lg) {
+    font-size: 28px;
+  }
+
+  @include responsive($breakpoint-sm) {
+    font-size: 24px;
+  }
+}
+
+.statLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-sm) {
+    font-size: 14px;
+  }
+}
+
+// ─── Branches ────────────────────────────────────────────
+.branches {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 0;
+  @include responsive(540px) {
+    display: none;
+  }
+}
+
+.branchItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  text-decoration: none;
+
+  @include responsive($breakpoint-md) {
+    padding: 0 16px;
+  }
+
+  &:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.branchText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.branchLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-sm) {
+    font-size: 14px;
+  }
+}
+
+.branchName {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  color: #fff;
+
+  @include responsive($breakpoint-sm) {
+    font-size: 16px;
+  }
+}
+
+// ─── Pagination ──────────────────────────────────────────
+.pagination {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+
+  :global(.swiper-pagination-bullet) {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    opacity: 1;
+    transition: all $transition-base;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    width: 24px;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  @include responsive($breakpoint-md) {
+    bottom: 16px;
+  }
+}

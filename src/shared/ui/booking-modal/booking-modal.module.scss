@@ -1,0 +1,328 @@
+@use "@/shared/styles/variables" as *;
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: backdropIn 0.2s ease;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 64px;
+  width: 100%;
+  max-width: 548px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: modalIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  @include responsive($breakpoint-sm) {
+    padding: 32px 24px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  color: #0f172a;
+
+  @include responsive($breakpoint-sm) {
+    font-size: 24px;
+  }
+}
+
+.subtitle {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #0f172a;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  color: #0f172a;
+}
+
+.inputError {
+  outline: 2px solid #d41b2c !important;
+  background: #fff5f5 !important;
+}
+
+.errorText {
+  font-family: $font-family;
+  font-size: 13px;
+  color: #d41b2c;
+  margin-top: 2px;
+}
+
+.input {
+  width: 100%;
+  height: 64px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #0f172a;
+  outline: none;
+  transition: background $transition-fast;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+
+  &:focus {
+    background: #e8eef5;
+  }
+}
+
+.teacherCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border-radius: 16px;
+  padding: 8px;
+  gap: 8px;
+}
+
+.teacherCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teacherCardAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.teacherCardTextStack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teacherCardLabel {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.teacherCardName {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.teacherCardRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.teacherCardBranch {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.teacherCardDays {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.selectTrigger {
+  width: 100%;
+  height: 64px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: #e8eef5;
+  }
+}
+
+.selectValue {
+  flex: 1;
+  text-align: left;
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.optionsList {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #f1f5f9;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.option {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  color: #0f172a;
+  cursor: pointer;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #d41b2c;
+  }
+}
+
+.optionActive {
+  font-weight: 600;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.closeBtn {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #f1f5f9;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: #e2e8f0;
+  }
+}
+
+.submitBtn {
+  flex: 1;
+  height: 64px;
+  background: #d41b2c;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background $transition-fast, opacity $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: darken(#d41b2c, 8%);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.successText {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 20px;
+  color: #0f172a;
+}

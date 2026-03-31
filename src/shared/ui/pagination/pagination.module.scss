@@ -1,0 +1,53 @@
+@use "@/shared/styles/variables" as *;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: $spacing-xl 0;
+}
+
+.page,
+.arrow {
+  @include flex-center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-text;
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  transition: all $transition-fast;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-light;
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.active {
+  background-color: $color-primary;
+  border-color: $color-primary;
+  color: #fff;
+
+  &:hover {
+    background-color: $color-primary-hover !important;
+    color: #fff !important;
+  }
+}
+
+.dots {
+  @include flex-center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: $color-text-muted;
+}

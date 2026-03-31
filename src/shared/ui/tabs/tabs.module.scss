@@ -1,0 +1,45 @@
+@use "@/shared/styles/variables" as *;
+
+.tabs {
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  border-bottom: 2px solid $color-border;
+  gap: $spacing-md;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tab {
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: 500;
+  color: $color-text-light;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all $transition-fast;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.active {
+  color: $color-primary;
+  border-bottom-color: $color-primary;
+}
+
+.panel {
+  padding: $spacing-xl 0;
+}

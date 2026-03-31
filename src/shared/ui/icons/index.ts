@@ -1,0 +1,13 @@
+export { ArrowRightIcon } from "./arrow-right";
+export { ArrowSquareRightIcon } from "./arrow-square-right";
+export { ChevronRightIcon } from "./chevron-right";
+export { CirclePlusIcon } from "./circle-plus";
+export { GiftIcon } from "./gift";
+export { SearchIcon } from "./search";
+export { PhoneIcon } from "./phone";
+export { EnvelopeIcon } from "./envelope";
+export { LocationIcon } from "./location";
+export { TelegramIcon } from "./telegram";
+export { InstagramIcon } from "./instagram";
+export { FacebookIcon } from "./facebook";
+export { YoutubeIcon } from "./youtube";
