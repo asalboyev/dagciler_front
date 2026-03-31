@@ -1,5 +1,5 @@
 export function formatPhoneUz(phone: string): string {
-  const digits = phone.replace(/\D/g, "");
+  const digits = phone?.replace(/\D/g, "");
 
   if (digits.length === 12 && digits.startsWith("998")) {
     const code = digits.slice(3, 5);
@@ -13,5 +13,5 @@ export function formatPhoneUz(phone: string): string {
 }
 
 export function parsePhoneForSubmit(phone: string): string {
-  return phone.replace(/\D/g, "");
+  return phone?.replace(/\D/g, "");
 }

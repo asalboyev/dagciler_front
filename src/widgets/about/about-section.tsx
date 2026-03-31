@@ -14,8 +14,8 @@ import styles from "./about-section.module.scss";
 
 function normalizeSocial(value: string, platform: "telegram" | "instagram"): string {
   if (value.startsWith("http")) return value;
-  if (platform === "telegram") return `https://t.me/${value.replace("@", "")}`;
-  return `https://instagram.com/${value.replace("@", "")}`;
+  if (platform === "telegram") return `https://t.me/${value?.replace("@", "")}`;
+  return `https://instagram.com/${value?.replace("@", "")}`;
 }
 
 /* ── Helpers ──────────────────────────────────────────── */

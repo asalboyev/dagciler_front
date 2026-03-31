@@ -16,7 +16,7 @@ function formatPrice(raw: string): string {
   if (!raw) return "";
   // If already contains "сум" or other currency marker, return as-is
   if (/[a-zа-яёА-ЯЁ]/i.test(raw)) return raw;
-  const num = parseFloat(raw.replace(/[\s,]/g, ""));
+  const num = parseFloat(raw?.replace(/[\s,]/g, ""));
   if (isNaN(num)) return raw;
   return new Intl.NumberFormat("ru-RU").format(num) + " сум";
 }

@@ -91,7 +91,7 @@ export function Header() {
 
         <div className={styles.actions}>
           {phone && (
-            <a href={`tel:${phone.replace(/\s/g, "")}`} className={styles.phone}>
+            <a href={`tel:${phone?.replace(/\s/g, "")}`} className={styles.phone}>
               <span className={styles.phoneNumber}>{phone}</span>
               <span className={styles.phoneLabel}>{t("phone-text")}</span>
             </a>

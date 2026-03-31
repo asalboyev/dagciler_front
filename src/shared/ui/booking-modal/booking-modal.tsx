@@ -11,7 +11,7 @@ import { useServices } from "@/entities/service";
 
 // Format: +998 XX XXX XX XX
 function formatPhone(raw: string): string {
-  let digits = raw.replace(/\D/g, "");
+  let digits = raw?.replace(/\D/g, "");
   if (digits.startsWith("998")) digits = digits.slice(3);
   else if (digits.startsWith("8") && digits.length > 9) digits = digits.slice(1);
   digits = digits.slice(0, 9);
@@ -25,7 +25,7 @@ function formatPhone(raw: string): string {
 }
 
 function formatName(raw: string): string {
-  return raw.replace(/[^a-zA-Zа-яА-ЯёЁ\s'\-\.]/g, "");
+  return raw?.replace(/[^a-zA-Zа-яА-ЯёЁ\s'\-\.]/g, "");
 }
 
 export function BookingModal() {
@@ -41,7 +41,7 @@ export function BookingModal() {
   };
 
   const validatePhone = (value: string): string => {
-    const digits = value.replace(/\D/g, "");
+    const digits = value?.replace(/\D/g, "");
     if (digits.length < 3 || digits === "998") return tPopup("phone-error");
     if (digits.length !== 12) return tPopup("phone-format");
     return "";

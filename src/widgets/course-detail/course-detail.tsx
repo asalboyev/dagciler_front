@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 
 function isContentEmpty(html: string | null | undefined): boolean {
   if (!html) return true;
-  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, "").trim() === "";
+  return html?.replace(/<[^>]*>/g, "")?.replace(/&nbsp;/g, "").trim() === "";
 }
 
 export function CourseDetail() {

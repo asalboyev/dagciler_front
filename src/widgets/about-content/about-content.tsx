@@ -17,13 +17,13 @@ import "swiper/css";
 
 function isHtmlEmpty(html: string | null | undefined): boolean {
   if (!html) return true;
-  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, "").trim() === "";
+  return html?.replace(/<[^>]*>/g, "")?.replace(/&nbsp;/g, "").trim() === "";
 }
 
 function normalizeSocial(value: string, platform: "telegram" | "instagram"): string {
   if (value.startsWith("http")) return value;
-  if (platform === "telegram") return `https://t.me/${value.replace("@", "")}`;
-  return `https://instagram.com/${value.replace("@", "")}`;
+  if (platform === "telegram") return `https://t.me/${value?.replace("@", "")}`;
+  return `https://instagram.com/${value?.replace("@", "")}`;
 }
 
 export function AboutContent() {
