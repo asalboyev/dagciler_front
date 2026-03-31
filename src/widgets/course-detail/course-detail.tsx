@@ -45,7 +45,7 @@ export function CourseDetail() {
           </div>
           <div className={styles.container}>
             <AnimateOnScroll>
-              <HtmlContent html={school!.content2!} className={`${styles.featuresGrid} ${styles.stagesGrid}`} />
+              <HtmlContent html={school!?.content2!} className={`${styles.featuresGrid} ${styles.stagesGrid}`} />
             </AnimateOnScroll>
           </div>
         </section>
