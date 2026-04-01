@@ -6,6 +6,7 @@ import { useFaqs } from "@/entities/faq";
 import { AnimateOnScroll } from "@/shared/ui/animate-on-scroll";
 import { Skeleton } from "@/shared/ui/skeleton";
 import styles from "./faq-section.module.scss";
+import { HtmlContent } from "@/shared/ui/html-content";
 
 function CircleChevron({ open }: { open: boolean }) {
   return (
@@ -80,7 +81,8 @@ export function FaqSection() {
                   style={{ gridTemplateRows: openIndex === i ? "1fr" : "0fr" }}
                 >
                   <div className={styles.answerInner}>
-                    <p className={styles.answer}>{faq.answer}</p>
+                    {/* <p className={styles.answer}>{faq.answer}</p> */}
+                    <HtmlContent className={styles.answer} html={faq.answer} />
                   </div>
                 </div>
               </div>

@@ -259,10 +259,16 @@
   aspect-ratio: 417 / 317;
   border-radius: 8px;
   overflow: hidden;
+  &:hover {
+      .atmosphereImage {
+        transform: scale(1.1);
+      }
+    }
 }
 
 .atmosphereImage {
   object-fit: cover;
+  transition: transform $transition-base;
 }
 
 .atmosphereTexts {
@@ -439,10 +445,16 @@
   aspect-ratio: 417 / 317;
   border-radius: 8px;
   overflow: hidden;
+  &:hover {
+    .galleryImage {
+      transform: scale(1.1);
+    }
+  }
 }
 
 .galleryImage {
   object-fit: cover;
+  transition: transform $transition-base;
 }
 
 // ─── CTA Heading ───────────────────────────────────────

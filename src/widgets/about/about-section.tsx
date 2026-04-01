@@ -101,17 +101,17 @@ export function AboutSection() {
         <div className={styles.cards}>
           {isPending
             ? [0, 1, 2, 3].map((i) => (
-                <Skeleton key={i} height="520px" borderRadius="8px" />
-              ))
+              <Skeleton key={i} height="520px" borderRadius="8px" />
+            ))
             : videos?.map((video, i) => (
-                <AnimateOnScroll
-                  key={video.id}
-                  delay={i * 0.1}
-                  className={styles.animateWrapper}
-                >
-                  <VideoCard video={video} telegramHref={telegramHref} />
-                </AnimateOnScroll>
-              ))}
+              <AnimateOnScroll
+                key={video.id}
+                delay={i * 0.1}
+                className={styles.animateWrapper}
+              >
+                <VideoCard video={video} telegramHref={telegramHref} />
+              </AnimateOnScroll>
+            ))}
         </div>
 
         {/* CTA banner */}
@@ -185,16 +185,14 @@ function VideoCard({ video, telegramHref }: { video: Video; telegramHref: string
         <div className={styles.cardOverlay} />
         <span className={styles.cardTitle}>{video.title}</span>
 
-        {telegramHref && (
-          <a
-            href={telegramHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.telegramButton}
-          >
-            {tMain("telegram-button")} <TelegramIcon size={20} fill="#fff" />
-          </a>
-        )}
+        <a
+          href={'https://t.me/@DagcilerBot'}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.telegramButton}
+        >
+          {tMain("telegram-button")} <TelegramIcon size={20} fill="#fff" />
+        </a>
       </div>
       <AboutCardDescription text={`${video.subtitle}`} />
     </div>

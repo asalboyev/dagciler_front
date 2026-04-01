@@ -317,9 +317,10 @@ function GiftCertificate() {
 
 function PaymentInfo() {
   const tMain = useTranslations("main");
+  const { data: siteInfo } = useSiteInfo();
   return (
     <div className={styles.paymentInfo}>
-      <div className={styles.paymentBlock}>
+      {/* <div className={styles.paymentBlock}>
         <h4 className={styles.paymentTitle}>{tMain("payment-title")}</h4>
         <p className={styles.paymentText}>
           {tMain("payment-desc")}
@@ -340,7 +341,8 @@ function PaymentInfo() {
         <p className={styles.paymentNoteText}>
           {tMain("subscription-desc")}
         </p>
-      </div>
+      </div> */}
+
     </div>
   );
 }
