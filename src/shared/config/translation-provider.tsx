@@ -16,7 +16,7 @@ export function TranslationProvider({
   const [messages, setMessages] = useState<Record<string, any>>({});
 
   useEffect(() => {
-    fetch(`/api/translations`, {
+    fetch(`/api/translations?locale=${locale}`, {
       headers: {
         "Accept-Language": locale,
       },

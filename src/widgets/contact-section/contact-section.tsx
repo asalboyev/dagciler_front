@@ -53,32 +53,30 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
     {
       icon: <PhoneIcon size={20} />,
       label: t("contact-phone"),
-      value: "+998 94 677 6778",
+      value: siteInfo?.phone ?? "+998 94 677 6778",
       description: t("contact-phone-text"),
-      href: `tel:+998946776778`,
+      href: siteInfo?.phone ? `tel:${siteInfo?.phone?.replace(/\s/g, "")}` : `tel:+998946776778`,
     },
     {
       icon: <InstagramIcon size={20} />,
       label: "Instagram",
-      value: '@Dagciler_ds',
+      value: siteInfo?.instagram ? `@${siteInfo?.instagram.split('/')[1]}` : '@Dagciler_ds',
       description: t("contact-instagram-tex"),
-      href: 'https://instagram.com/Dagciler_ds',
+      href: siteInfo?.instagram ?? 'https://instagram.com/Dagciler_ds',
     },
     {
       icon: <TelegramIcon size={20} />,
       label: t('tg-channel'),
-      value: '+998 94 677 6778',
+      value: siteInfo?.telegram ? `@${siteInfo?.telegram}` : '@Dagciler_ds',
       description: t("tg-channel-description"),
-      href: `tel:${'+998 94 677 6778'.replace(/\s/g, "")}`,
+      href: siteInfo?.telegram ? `tel:${siteInfo?.telegram?.replace(/\s/g, "")}` : `tel:+998946776778`,
     },
     {
       icon: <TelegramIcon size={20} />,
       label: t('tg'),
-      value: '@EnsembleDagciler',
+      value: siteInfo?.telegram ?? '@EnsembleDagciler',
       description: t("contact-telegram-tex"),
-      href: '@EnsembleDagciler'.startsWith("http")
-        ? '@EnsembleDagciler'
-        : `https://t.me/${'@EnsembleDagciler'.replace("@", "")}`,
+      href: siteInfo?.telegram ? `https://t.me/${siteInfo?.telegram?.replace("@", "")}` : `https://t.me/${'@EnsembleDagciler'.replace("@", "")}`,
     }
   ].filter(Boolean) as {
     icon: React.ReactNode;

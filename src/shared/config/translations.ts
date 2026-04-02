@@ -40,7 +40,7 @@ export async function fetchTranslations(
 ): Promise<Record<string, any>> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/translations`, {
+      `${process.env.NEXT_PUBLIC_API_URL}/translations?locale=${locale}`, {
       headers: {
         "Accept-Language": locale,
       }

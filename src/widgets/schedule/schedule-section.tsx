@@ -34,9 +34,10 @@ interface FilterDropdownProps {
   options: string[];
   allLabel: string;
   onChange: (v: string) => void;
+  capitalize?: boolean;
 }
 
-function FilterDropdown({ label, value, options, allLabel, onChange }: FilterDropdownProps) {
+function FilterDropdown({ label, value, options, allLabel, onChange, capitalize = false }: FilterDropdownProps) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -97,7 +98,7 @@ function FilterDropdown({ label, value, options, allLabel, onChange }: FilterDro
               onClick={() => { onChange(""); setOpen(false); }}
               type="button"
             >
-              {allLabel}
+              {capitalize ? allLabel.charAt(0).toUpperCase() + allLabel.slice(1) : allLabel}
             </button>
             {options.map((opt) => (
               <button
@@ -106,7 +107,7 @@ function FilterDropdown({ label, value, options, allLabel, onChange }: FilterDro
                 onClick={() => { onChange(opt); setOpen(false); }}
                 type="button"
               >
-                {opt}
+                {capitalize ? opt.charAt(0).toUpperCase() + opt.slice(1) : opt}
               </button>
             ))}
           </div>,
@@ -180,6 +181,7 @@ export function ScheduleSection() {
               options={uniqueTeachers as string[]}
               allLabel={allLabel}
               onChange={setFilterTeacher}
+              capitalize={true}
             />
             <FilterDropdown
               label={tMain("tarif-group")}
@@ -187,6 +189,7 @@ export function ScheduleSection() {
               options={uniqueGroupTypes as string[]}
               allLabel={allLabel}
               onChange={setFilterGroupType}
+              capitalize={true}
             />
             <FilterDropdown
               label={tMain("day-table")}
@@ -194,6 +197,7 @@ export function ScheduleSection() {
               options={uniqueDays as string[]}
               allLabel={allLabel}
               onChange={setFilterDays}
+              capitalize={true}
             />
             <FilterDropdown
               label={tMain("filial-tex")}
@@ -201,6 +205,7 @@ export function ScheduleSection() {
               options={uniqueBranches as string[]}
               allLabel={allLabel}
               onChange={setFilterBranch}
+              capitalize={true}
             />
           </div>
         </AnimateOnScroll>

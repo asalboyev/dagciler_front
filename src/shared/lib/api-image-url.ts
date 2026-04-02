@@ -1,5 +1,5 @@
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api";
+  process.env.NEXT_PUBLIC_API_URL ?? "https://admin.dagciler.uz/api";
 const BASE_URL = API_BASE?.replace(/\/api$/, "");
 
 export function resolveApiImageUrl(url: string | null | undefined): string {
