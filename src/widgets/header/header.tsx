@@ -82,7 +82,7 @@ export function Header() {
                 className={`${styles.navLink} ${isActive ? styles.active : ""}`}
                 onClick={() => setMenuOpen(false)}
               >
-                {item.labelKey}
+                {t(item.labelKey)}
               </Link>
             );
           })}

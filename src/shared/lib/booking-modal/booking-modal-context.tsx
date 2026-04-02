@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { createContext, useContext, useState, type ReactNode } from "react";
 
 export interface ServiceInfo {
@@ -32,23 +33,24 @@ interface BookingModalContextValue {
   close: () => void;
 }
 
-const DEFAULT_TITLE = "Записаться на пробное занятие";
-const DEFAULT_SUBTITLE = "Присоединяйтесь к нашей школе и почувствуйте атмосферу настоящего кавказского танца.";
+const DEFAULT_TITLE = "title2";
+const DEFAULT_SUBTITLE = "subtitle2";
 
 const BookingModalContext = createContext<BookingModalContextValue | null>(null);
 
 export function BookingModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState(DEFAULT_TITLE);
-  const [subtitle, setSubtitle] = useState(DEFAULT_SUBTITLE);
+  const t = useTranslations("popup");
+  const [title, setTitle] = useState(t(DEFAULT_TITLE));
+  const [subtitle, setSubtitle] = useState(t(DEFAULT_SUBTITLE));
   const [variant, setVariant] = useState<BookingModalVariant>("trial");
   const [serviceInfo, setServiceInfo] = useState<ServiceInfo | null>(null);
   const [serviceId, setServiceId] = useState<number | null>(null);
   const [tariffId, setTariffId] = useState<number | null>(null);
 
   const open = (options?: BookingModalOptions) => {
-    setTitle(options?.title ?? DEFAULT_TITLE);
-    setSubtitle(options?.subtitle ?? DEFAULT_SUBTITLE);
+    setTitle(options?.title ?? t(DEFAULT_TITLE));
+    setSubtitle(options?.subtitle ?? t(DEFAULT_SUBTITLE));
     setVariant(options?.variant ?? "trial");
     setServiceInfo(options?.serviceInfo ?? null);
     setServiceId(options?.serviceId ?? null);
@@ -58,8 +60,8 @@ export function BookingModalProvider({ children }: { children: ReactNode }) {
 
   const close = () => {
     setIsOpen(false);
-    setTitle(DEFAULT_TITLE);
-    setSubtitle(DEFAULT_SUBTITLE);
+    setTitle(t(DEFAULT_TITLE));
+    setSubtitle(t(DEFAULT_SUBTITLE));
     setVariant("trial");
     setServiceInfo(null);
     setServiceId(null);

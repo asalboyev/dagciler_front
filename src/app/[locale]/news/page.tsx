@@ -8,6 +8,7 @@ import { DynamicPageBanner } from "@/shared/ui/page-banner";
 import { SkeletonCard } from "@/shared/ui/skeleton";
 import { useLocale } from "@/shared/lib/i18n/use-locale";
 import styles from "./page.module.scss";
+import { useTranslations } from "next-intl";
 
 /* ── Constants ───────────────────────────────────────────── */
 
@@ -21,6 +22,8 @@ export default function NewsPage() {
   const locale = useLocale();
   const [activeType, setActiveType] = useState<string | undefined>(undefined);
   const [page, setPage] = useState(1);
+  const tMenu = useTranslations("menu");
+  const t = useTranslations("main");
   const [allPosts, setAllPosts] = useState<Post[]>([]);
 
   const { data: categories } = useCategories();
@@ -57,8 +60,8 @@ export default function NewsPage() {
         {/* ── Hero ──────────────────────────────────────── */}
         <div className={styles.hero}>
           <DynamicPageBanner
-            title="Новости"
-            subtitle="Следите за событиями, выступлениями и жизнью нашей танцевальной школы."
+            title={tMenu("news")}
+            subtitle={t("novosti-title")}
             bannerImage="/images/hero.png"
           />
         </div>
