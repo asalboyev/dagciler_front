@@ -237,7 +237,7 @@ export function BookingModal() {
                               className={`${styles.option} ${groupType === opt ? styles.optionActive : ""}`}
                               onMouseDown={(e) => { e.preventDefault(); setGroupType(opt); setGroupDropdownOpen(false); }}
                             >
-                              {opt}
+                              {opt.charAt(0).toUpperCase() + opt.slice(1).toLowerCase()}lar
                             </button>
                           ))}
                       </div>

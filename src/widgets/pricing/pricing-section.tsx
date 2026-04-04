@@ -255,7 +255,7 @@ function GiftCertificate() {
   const tMain = useTranslations("main");
   const tForma = useTranslations("forma");
   const { data: siteInfo } = useSiteInfo();
-
+  const { open: openBooking } = useBookingModal();
   return (
     <div className={styles.giftCard}>
       <div className={styles.giftInner}>
@@ -305,7 +305,7 @@ function GiftCertificate() {
         </div>
       </div>
       <div className={styles.giftBtnWrapper}>
-        <Button variant="red" size="lg" className={styles.giftBtn}>
+        <Button variant="red" size="lg" className={styles.giftBtn} onClick={() => openBooking({ variant: "call" })}>
           {tForma("button3")}
         </Button>
       </div>
