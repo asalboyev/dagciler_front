@@ -1,13 +1,19 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useBookingModal } from "@/shared/lib/booking-modal";
 import { useSubmitApplication } from "@/entities/contact";
 import styles from "./booking-modal.module.scss";
-import { useServices } from "@/entities/service";
+import type { Locale } from "@/shared/config/i18n";
 
+/** Shown in UI; `value` is sent in `message` to the backend. */
+const GROUP_TYPE_OPTIONS: { value: string; label: Record<Locale, string> }[] = [
+  { value: "ayollar", label: { uz: "Ayollar", ru: "Женщины" } },
+  { value: "erkaklar", label: { uz: "Erkaklar", ru: "Мужчины" } },
+  { value: "bolalar", label: { uz: "Bolalar", ru: "Дети" } },
+];
 
 // Format: +998 XX XXX XX XX
 function formatPhone(raw: string): string {
@@ -29,6 +35,7 @@ function formatName(raw: string): string {
 }
 
 export function BookingModal() {
+  const locale = useLocale() as Locale;
   const tPopup = useTranslations("popup");
   const tMain = useTranslations("main");
   const { isOpen, title, subtitle, variant, serviceInfo, serviceId, tariffId, close } = useBookingModal();
@@ -49,7 +56,10 @@ export function BookingModal() {
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+998");
-  const [groupType, setGroupType] = useState("");
+  /** Backend slug: ayollar | erkaklar | bolalar */
+  const [groupValue, setGroupValue] = useState("");
+  /** Label text shown in the group-type field (search / display). */
+  const [groupDisplay, setGroupDisplay] = useState("");
   const [groupDropdownOpen, setGroupDropdownOpen] = useState(false);
   const groupRef = useRef<HTMLDivElement>(null);
   const [nameError, setNameError] = useState("");
@@ -58,14 +68,12 @@ export function BookingModal() {
 
   const showGroupType = variant !== "call" && !serviceInfo;
 
-  const { data: services } = useServices();
-  const uniqueGroupTypes = useMemo(() => [...new Set((services ?? []).map((s) => s.group_type).filter(Boolean))], [services]);
-
   useEffect(() => {
     if (!isOpen) {
       setName("");
       setPhone("+998");
-      setGroupType("");
+      setGroupValue("");
+      setGroupDisplay("");
       setGroupDropdownOpen(false);
       setNameError("");
       setPhoneError("");
@@ -109,7 +117,7 @@ export function BookingModal() {
     if (nErr || pErr) return;
     const message = serviceInfo
       ? `${serviceInfo.teacher}${serviceInfo.branch ? `, ${serviceInfo.branch}` : ""}${serviceInfo.days ? `, ${serviceInfo.days}` : ""}`
-      : groupType;
+      : groupValue;
     const payload = { name, phone_number: phone, message, type: variant, page: "site", service_id: serviceId ?? null, tariff_id: tariffId ?? null };
     mutate(payload, {
       onSuccess: () => {
@@ -221,25 +229,49 @@ export function BookingModal() {
                     <input
                       className={styles.input}
                       placeholder={tPopup("group-placeholder")}
-                      value={groupType}
-                      onChange={(e) => setGroupType(e.target.value)}
+                      value={groupDisplay}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        setGroupDisplay(v);
+                        setGroupValue("");
+                        setGroupDropdownOpen(true);
+                      }}
                       onFocus={() => setGroupDropdownOpen(true)}
-                      onBlur={() => setTimeout(() => setGroupDropdownOpen(false), 150)}
+                      onBlur={() =>
+                        setTimeout(() => {
+                          setGroupDropdownOpen(false);
+                          const match = GROUP_TYPE_OPTIONS.find(
+                            (o) => o.label[locale].toLowerCase() === groupDisplay.trim().toLowerCase()
+                          );
+                          if (match) {
+                            setGroupValue(match.value);
+                            setGroupDisplay(match.label[locale]);
+                          }
+                        }, 150)
+                      }
                     />
-                    {groupDropdownOpen && uniqueGroupTypes.length > 0 && (
+                    {groupDropdownOpen && (
                       <div className={styles.optionsList}>
-                        {uniqueGroupTypes
-                          .filter((opt) => !groupType || opt.toLowerCase().includes(groupType.toLowerCase()))
-                          .map((opt) => (
-                            <button
-                              key={opt}
-                              type="button"
-                              className={`${styles.option} ${groupType === opt ? styles.optionActive : ""}`}
-                              onMouseDown={(e) => { e.preventDefault(); setGroupType(opt); setGroupDropdownOpen(false); }}
-                            >
-                              {opt.charAt(0).toUpperCase() + opt.slice(1).toLowerCase()}lar
-                            </button>
-                          ))}
+                        {GROUP_TYPE_OPTIONS.filter((opt) => {
+                          const q = groupDisplay.trim().toLowerCase();
+                          if (!q) return true;
+                          const lab = opt.label[locale].toLowerCase();
+                          return lab.includes(q) || opt.value.includes(q);
+                        }).map((opt) => (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            className={`${styles.option} ${groupValue === opt.value ? styles.optionActive : ""}`}
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              setGroupValue(opt.value);
+                              setGroupDisplay(opt.label[locale]);
+                              setGroupDropdownOpen(false);
+                            }}
+                          >
+                            {opt.label[locale]}
+                          </button>
+                        ))}
                       </div>
                     )}
                   </div>
