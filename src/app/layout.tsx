@@ -1,5 +1,20 @@
+import type { Metadata, Viewport } from "next";
 import { Manrope, Unbounded, Viaoda_Libre } from "next/font/google";
 import "@/shared/styles/index.scss";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: [{ url: "/logo.svg", type: "image/svg+xml" }],
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 const manrope = Manrope({
   subsets: ["latin", "latin-ext", "cyrillic"],

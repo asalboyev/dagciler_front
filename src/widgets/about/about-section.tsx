@@ -11,6 +11,7 @@ import { Button } from "@/shared/ui/button";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { AnimateOnScroll } from "@/shared/ui/animate-on-scroll";
 import styles from "./about-section.module.scss";
+import Link from "next/link";
 
 function normalizeSocial(value: string, platform: "telegram" | "instagram"): string {
   if (value.startsWith("http")) return value;
@@ -130,14 +131,15 @@ export function AboutSection() {
                 {tForma("button1")}
               </Button>
               {telegramHref && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className={styles.ctaBtnOutline}
-                  onClick={() => window.open(telegramHref, "_blank", "noopener,noreferrer")}
-                >
-                  {tForma("button2")}
-                </Button>
+                <Link href={`https://t.me/${telegramHref.split("@")?.[1]}`} target="_blank">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className={styles.ctaBtnOutline}
+                  >
+                    {tForma("button2")}
+                  </Button>
+                  </Link>
               )}
             </div>
           </div>
