@@ -43,6 +43,24 @@ function MapIcon() {
   );
 }
 
+/** 🔧 Helpers */
+const normalizePhone = (phone?: string) =>
+  phone ? `tel:${phone.replace(/\s/g, "")}` : "tel:+998946776778";
+
+const getInstagramUsername = (url?: string) => {
+  if (!url) return "Dagciler_ds";
+  return url.split("/").filter(Boolean).pop() || "Dagciler_ds";
+};
+
+const getTelegramUsername = (tg?: string) => {
+  if (!tg) return "Dagciler_ds";
+  return tg
+    .replace("https://t.me/", "")
+    .replace("http://t.me/", "")
+    .replace("@", "")
+    .trim();
+};
+
 export function ContactSection({ isHome }: { isHome?: boolean }) {
   const t = useTranslations("main");
   const locale = useLocale();
@@ -55,30 +73,30 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
       label: t("contact-phone"),
       value: siteInfo?.phone ?? "+998 94 677 6778",
       description: t("contact-phone-text"),
-      href: siteInfo?.phone ? `tel:${siteInfo?.phone?.replace(/\s/g, "")}` : `tel:+998946776778`,
+      href: normalizePhone(siteInfo?.phone),
     },
     {
       icon: <InstagramIcon size={20} />,
       label: "Instagram",
-      value: siteInfo?.instagram ? `@${siteInfo?.instagram.split('/')[1]}` : '@Dagciler_ds',
+      value: `@${getInstagramUsername(siteInfo?.instagram)}`,
       description: t("contact-instagram-tex"),
-      href: siteInfo?.instagram ?? 'https://instagram.com/Dagciler_ds',
+      href: siteInfo?.instagram ? `https://${siteInfo?.instagram}` : "https://instagram.com/Dagciler_ds",
     },
     {
       icon: <TelegramIcon size={20} />,
-      label: t('tg-channel'),
-      value: siteInfo?.telegram ? `@${siteInfo?.telegram}` : '@Dagciler_ds',
+      label: t("tg-channel"),
+      value: `@${getTelegramUsername(siteInfo?.telegram)}`,
       description: t("tg-channel-description"),
-      href: siteInfo?.telegram ? `tel:${siteInfo?.telegram?.replace(/\s/g, "")}` : `tel:+998946776778`,
+      href: `https://t.me/${getTelegramUsername(siteInfo?.telegram)}`,
     },
     {
       icon: <TelegramIcon size={20} />,
-      label: t('tg'),
-      value: siteInfo?.telegram ?? '@EnsembleDagciler',
+      label: t("tg"),
+      value: `@${getTelegramUsername(siteInfo?.telegram)}`,
       description: t("contact-telegram-tex"),
-      href: siteInfo?.telegram ? `https://t.me/${siteInfo?.telegram?.replace("@", "")}` : `https://t.me/${'@EnsembleDagciler'.replace("@", "")}`,
-    }
-  ].filter(Boolean) as {
+      href: `https://t.me/${getTelegramUsername(siteInfo?.telegram)}`,
+    },
+  ] as {
     icon: React.ReactNode;
     label: string;
     value: string;
@@ -94,31 +112,43 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
         <AnimateOnScroll>
           <div className={styles.header}>
             <h2 className={styles.title}>{t("contacts-title")}</h2>
-            <p className={styles.subtitle}>
-              {t("contact-subtitle")}
-            </p>
+            <p className={styles.subtitle}>{t("contact-subtitle")}</p>
           </div>
         </AnimateOnScroll>
 
         {contacts.length > 0 && (
           <div className={styles.contactsGrid}>
             {contacts.map((contact, i) => (
-              <AnimateOnScroll key={contact.label} delay={i * 0.08} className={styles.contactGridItem}>
+              <AnimateOnScroll
+                key={contact.label}
+                delay={i * 0.08}
+                className={styles.contactGridItem}
+              >
                 <a
                   href={contact.href}
-                  target={contact.href.startsWith("tel:") ? undefined : "_blank"}
+                  target={
+                    contact.href.startsWith("tel:") ? undefined : "_blank"
+                  }
                   rel="noopener noreferrer"
                   className={styles.contactCard}
                 >
                   <div className={styles.contactTop}>
-                    <span className={styles.contactIcon}>{contact.icon}</span>
+                    <span className={styles.contactIcon}>
+                      {contact.icon}
+                    </span>
                     <div className={styles.contactInfo}>
-                      <span className={styles.contactLabel}>{contact.label}</span>
-                      <span className={styles.contactValue}>{contact.value}</span>
+                      <span className={styles.contactLabel}>
+                        {contact.label}
+                      </span>
+                      <span className={styles.contactValue}>
+                        {contact.value}
+                      </span>
                     </div>
                   </div>
                   <hr className={styles.divider} />
-                  <p className={styles.contactDesc}>{contact.description}</p>
+                  <p className={styles.contactDesc}>
+                    {contact.description}
+                  </p>
                 </a>
               </AnimateOnScroll>
             ))}
@@ -130,17 +160,27 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
             {filials.map((filial, i) => {
               const name = pickLocale(filial.rayon, locale);
               const address = pickLocale(filial.address, locale);
+
               return (
-                <AnimateOnScroll key={filial.id} delay={i * 0.1} className={styles.branchGridItem}>
+                <AnimateOnScroll
+                  key={filial.id}
+                  delay={i * 0.1}
+                  className={styles.branchGridItem}
+                >
                   <div className={styles.branchCard}>
                     <div className={styles.branchInfo}>
-                      <span className={styles.branchLabel}>{t("filial-tex")}</span>
+                      <span className={styles.branchLabel}>
+                        {t("filial-tex")}
+                      </span>
                       <span className={styles.branchName}>{name}</span>
                       {address && (
-                        <span className={styles.branchAddress}>{address}</span>
+                        <span className={styles.branchAddress}>
+                          {address}
+                        </span>
                       )}
                     </div>
-                    {filial.location && (
+
+                    {filial.location ? (
                       <a
                         href={filial.location}
                         target="_blank"
@@ -150,8 +190,7 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
                         <span>{t("map-button")}</span>
                         <MapIcon />
                       </a>
-                    )}
-                    {!filial.location && (
+                    ) : (
                       <button
                         disabled
                         style={{ opacity: "50%" }}

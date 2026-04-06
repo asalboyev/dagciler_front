@@ -28,16 +28,37 @@ function ChevronDownIcon() {
   );
 }
 
+// interface FilterDropdownProps {
+//   label: string;
+//   value: string;
+//   options: string[] | [];
+//   allLabel: string;
+//   onChange: (v: string) => void;
+//   capitalize?: boolean;
+// }
+
+interface OptionObject {
+  label: string;
+  value: string;
+}
+
 interface FilterDropdownProps {
   label: string;
   value: string;
-  options: string[];
+  options: (string | OptionObject)[];
   allLabel: string;
   onChange: (v: string) => void;
   capitalize?: boolean;
 }
 
-function FilterDropdown({ label, value, options, allLabel, onChange, capitalize = false }: FilterDropdownProps) {
+function FilterDropdown({
+  label,
+  value,
+  options,
+  allLabel,
+  onChange,
+  capitalize = false,
+}: FilterDropdownProps) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -46,7 +67,11 @@ function FilterDropdown({ label, value, options, allLabel, onChange, capitalize 
   const updatePos = useCallback(() => {
     if (triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
-      setPos({ top: rect.bottom + 8 + window.scrollY, left: rect.left + window.scrollX, width: rect.width });
+      setPos({
+        top: rect.bottom + 8 + window.scrollY,
+        left: rect.left + window.scrollX,
+        width: rect.width,
+      });
     }
   }, []);
 
@@ -65,18 +90,38 @@ function FilterDropdown({ label, value, options, allLabel, onChange, capitalize 
     if (!open) return;
     function handleClickOutside(e: MouseEvent) {
       const target = e.target as Node;
-      if (triggerRef.current?.contains(target) || menuRef.current?.contains(target)) return;
+      if (
+        triggerRef.current?.contains(target) ||
+        menuRef.current?.contains(target)
+      )
+        return;
       setOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
-  const displayValue = value || allLabel;
+  // ✅ Get display label (important fix)
+  const displayValue = (() => {
+    if (!value) return allLabel;
+
+    const found = options.find((opt) =>
+      typeof opt === "object" ? opt.value === value : opt === value
+    );
+
+    if (!found) return value;
+
+    const label = typeof found === "object" ? found.label : found;
+
+    return capitalize
+      ? label.charAt(0).toUpperCase() + label.slice(1)
+      : label;
+  })();
 
   return (
     <div className={styles.filterGroup}>
       <span className={styles.filterLabel}>{label}</span>
+
       <div className={styles.filterDropdown}>
         <button
           ref={triggerRef}
@@ -87,32 +132,61 @@ function FilterDropdown({ label, value, options, allLabel, onChange, capitalize 
           <span>{displayValue}</span>
           <ChevronDownIcon />
         </button>
-        {open && createPortal(
-          <div
-            ref={menuRef}
-            className={styles.filterMenu}
-            style={{ position: "absolute", top: pos.top, left: pos.left, width: pos.width }}
-          >
-            <button
-              className={`${styles.filterOption} ${!value ? styles.selected : ""}`}
-              onClick={() => { onChange(""); setOpen(false); }}
-              type="button"
+
+        {open &&
+          createPortal(
+            <div
+              ref={menuRef}
+              className={styles.filterMenu}
+              style={{
+                position: "absolute",
+                top: pos.top,
+                left: pos.left,
+                width: pos.width,
+              }}
             >
-              {capitalize ? allLabel.charAt(0).toUpperCase() + allLabel.slice(1) : allLabel}
-            </button>
-            {options.map((opt) => (
+              {/* ALL OPTION */}
               <button
-                key={opt}
-                className={`${styles.filterOption} ${value === opt ? styles.selected : ""}`}
-                onClick={() => { onChange(opt); setOpen(false); }}
+                className={`${styles.filterOption} ${!value ? styles.selected : ""
+                  }`}
+                onClick={() => {
+                  onChange("");
+                  setOpen(false);
+                }}
                 type="button"
               >
-                {capitalize ? opt.charAt(0).toUpperCase() + opt.slice(1) : opt}
+                {capitalize
+                  ? allLabel.charAt(0).toUpperCase() + allLabel.slice(1)
+                  : allLabel}
               </button>
-            ))}
-          </div>,
-          document.body,
-        )}
+
+              {/* OPTIONS */}
+              {options.map((opt) => {
+                const isObject = typeof opt === "object";
+                const valueOpt = isObject ? opt.value : opt;
+                const labelOpt = isObject ? opt.label : opt;
+
+                return (
+                  <button
+                    key={valueOpt}
+                    className={`${styles.filterOption} ${value === valueOpt ? styles.selected : ""
+                      }`}
+                    onClick={() => {
+                      onChange(valueOpt);
+                      setOpen(false);
+                    }}
+                    type="button"
+                  >
+                    {capitalize
+                      ? labelOpt.charAt(0).toUpperCase() +
+                      labelOpt.slice(1)
+                      : labelOpt}
+                  </button>
+                );
+              })}
+            </div>,
+            document.body
+          )}
       </div>
     </div>
   );
@@ -130,7 +204,12 @@ export function ScheduleSection() {
   const [filterBranch, setFilterBranch] = useState("");
 
   const uniqueTeachers = useMemo(() => [...new Set((services ?? []).map((s) => s.teacher).filter(Boolean))], [services]);
-  const uniqueGroupTypes = useMemo(() => [...new Set((services ?? []).map((s) => s.group_type).filter(Boolean))], [services]);
+  const uniqueGroupTypes = [
+    { label: "Erkaklar", value: "erkak" },
+    { label: "Ayollar", value: "ayol" },
+    { label: "Bolalar", value: "bola" }
+  ];
+  // const uniqueGroupTypes = useMemo(() => [...new Set((services ?? []).map((s) => s.group_type).filter(Boolean))], [services]);
   const uniqueDays = useMemo(() => [...new Set((services ?? []).map((s) => s.days).filter(Boolean))], [services]);
   const uniqueBranches = useMemo(() => [...new Set((services ?? []).map((s) => s.branch).filter(Boolean))], [services]);
 
@@ -186,7 +265,7 @@ export function ScheduleSection() {
             <FilterDropdown
               label={tMain("tarif-group")}
               value={filterGroupType}
-              options={uniqueGroupTypes as string[]}
+              options={uniqueGroupTypes}
               allLabel={allLabel}
               onChange={setFilterGroupType}
               capitalize={true}

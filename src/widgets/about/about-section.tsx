@@ -188,7 +188,7 @@ function VideoCard({ video, telegramHref }: { video: Video; telegramHref: string
         <span className={styles.cardTitle}>{video.title}</span>
 
         <a
-          href={'https://t.me/@DagcilerBot'}
+          href={'https://t.me/DagcilerBot'}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.telegramButton}
