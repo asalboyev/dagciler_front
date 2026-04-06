@@ -44,15 +44,21 @@ function MapIcon() {
 }
 
 /** 🔧 Helpers */
-const normalizePhone = (phone?: string) =>
+const normalizePhone = (phone?: string | null) =>
   phone ? `tel:${phone.replace(/\s/g, "")}` : "tel:+998946776778";
 
-const getInstagramUsername = (url?: string) => {
+const normalizeUrl = (url?: string | null, fallback?: string) => {
+  if (!url) return fallback || "#";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `https://${url}`;
+};
+
+const getInstagramUsername = (url?: string | null) => {
   if (!url) return "Dagciler_ds";
   return url.split("/").filter(Boolean).pop() || "Dagciler_ds";
 };
 
-const getTelegramUsername = (tg?: string) => {
+const getTelegramUsername = (tg?: string | null) => {
   if (!tg) return "Dagciler_ds";
   return tg
     .replace("https://t.me/", "")
@@ -80,7 +86,10 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
       label: "Instagram",
       value: `@${getInstagramUsername(siteInfo?.instagram)}`,
       description: t("contact-instagram-tex"),
-      href: siteInfo?.instagram ? `https://${siteInfo?.instagram}` : "https://instagram.com/Dagciler_ds",
+      href: normalizeUrl(
+        siteInfo?.instagram,
+        "https://instagram.com/Dagciler_ds"
+      ),
     },
     {
       icon: <TelegramIcon size={20} />,
