@@ -22,6 +22,8 @@ export interface SiteInfo {
   address: string | null;
   working_hours: string | null;
   telegram: string | null;
+  telegram_channel: string | null;
+  telegram_manager: string | null;
   instagram: string | null;
   facebook: string | null;
   youtube: string | null;

@@ -94,16 +94,16 @@ export function ContactSection({ isHome }: { isHome?: boolean }) {
     {
       icon: <TelegramIcon size={20} />,
       label: t("tg-channel"),
-      value: `@${getTelegramUsername(siteInfo?.telegram)}`,
+      value: `@${getTelegramUsername(siteInfo?.telegram_channel)}`,
       description: t("tg-channel-description"),
-      href: `https://t.me/${getTelegramUsername(siteInfo?.telegram)}`,
+      href: `https://t.me/${getTelegramUsername(siteInfo?.telegram_channel)}`,
     },
     {
       icon: <TelegramIcon size={20} />,
       label: t("tg"),
-      value: `@${getTelegramUsername(siteInfo?.telegram)}`,
+      value: `@${getTelegramUsername(siteInfo?.telegram_manager)}`,
       description: t("contact-telegram-tex"),
-      href: `https://t.me/${getTelegramUsername(siteInfo?.telegram)}`,
+      href: `https://t.me/${getTelegramUsername(siteInfo?.telegram_manager)}`,
     },
   ] as {
     icon: React.ReactNode;

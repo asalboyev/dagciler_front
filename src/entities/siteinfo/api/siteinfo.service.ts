@@ -9,22 +9,22 @@ export async function getSiteInfo(): Promise<SiteInfo | null> {
 
     const about_sections: AboutSection[] = Array.isArray(raw.about_sections)
       ? raw.about_sections.map((s: any) => ({
-          title: s.title ?? null,
-          subtitle: s.subtitle ?? null,
-          desc: s.desc ?? null,
-          images: Array.isArray(s.images) ? s.images : [],
-        }))
+        title: s.title ?? null,
+        subtitle: s.subtitle ?? null,
+        desc: s.desc ?? null,
+        images: Array.isArray(s.images) ? s.images : [],
+      }))
       : [];
 
     const about_schools: AboutSchoolItem[] = Array.isArray(raw.about_schools)
       ? raw.about_schools.map((s: any) => ({
-          id: s.id,
-          title: s.title ?? null,
-          subtitle: s.subtitle ?? null,
-          content1: s.content_1 ?? null,
-          content2: s.content_2 ?? null,
-          image: s.image ?? null,
-        }))
+        id: s.id,
+        title: s.title ?? null,
+        subtitle: s.subtitle ?? null,
+        content1: s.content_1 ?? null,
+        content2: s.content_2 ?? null,
+        image: s.image ?? null,
+      }))
       : [];
 
     return {
@@ -37,6 +37,8 @@ export async function getSiteInfo(): Promise<SiteInfo | null> {
       telegram: raw.telegram ?? null,
       instagram: raw.instagram ?? null,
       facebook: raw.facebook ?? null,
+      telegram_channel: raw.telegram_channel ?? null,
+      telegram_manager: raw.telegram_manager ?? null,
       youtube: raw.youtube ?? null,
       logo_url: raw.logo ?? null,
       gift_card_image: raw.gift_card_image ?? null,
