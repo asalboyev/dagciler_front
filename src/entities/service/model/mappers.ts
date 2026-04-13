@@ -20,7 +20,8 @@ export function toService(raw: any): Service {
       filial?.rayon?.ru ??
       filial?.rayon?.en ??
       filial?.rayon?.uz ??
-      raw.branch ??
+      filial?.rayon ??
+      raw.rayon ??
       "",
     price: String(raw.price ?? ""),
     deadline: raw.application_deadline ?? raw.deadline ?? "",

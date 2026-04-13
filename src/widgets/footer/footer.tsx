@@ -5,11 +5,13 @@ import { useTranslations } from "next-intl";
 import { useSiteInfo } from "@/entities/siteinfo";
 import { Button } from "@/shared/ui/button";
 import styles from "./footer.module.scss";
+import { useBookingModal } from "@/shared/lib/booking-modal";
 
 export function Footer() {
   const t = useTranslations("menu");
   const { data: siteInfo } = useSiteInfo();
   const phone = siteInfo?.phone ?? null;
+  const { open } = useBookingModal()
 
   return (
     <footer className={styles.footer}>
@@ -29,7 +31,7 @@ export function Footer() {
               <span className={styles.phoneLabel}>{t("phone-text")}</span>
             </a>
           )}
-          <Button variant="red" size="lg" className={styles.cta}>
+          <Button variant="red" size="lg" className={styles.cta} onClick={() => open({ variant: "call" })}>
             {t("button")}
           </Button>
         </div>

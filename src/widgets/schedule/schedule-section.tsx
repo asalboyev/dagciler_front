@@ -205,14 +205,13 @@ export function ScheduleSection() {
 
   const uniqueTeachers = useMemo(() => [...new Set((services ?? []).map((s) => s.teacher).filter(Boolean))], [services]);
   const uniqueGroupTypes = [
-    { label: "Erkaklar", value: "erkak" },
-    { label: "Ayollar", value: "ayol" },
-    { label: "Bolalar", value: "bola" }
+    { label: tMain('male'), value: "erkak" },
+    { label: tMain('female'), value: "ayol" },
+    { label: tMain('kid'), value: "bola" }
   ];
   // const uniqueGroupTypes = useMemo(() => [...new Set((services ?? []).map((s) => s.group_type).filter(Boolean))], [services]);
   const uniqueDays = useMemo(() => [...new Set((services ?? []).map((s) => s.days).filter(Boolean))], [services]);
   const uniqueBranches = useMemo(() => [...new Set((services ?? []).map((s) => s.branch).filter(Boolean))], [services]);
-
   const filtered = useMemo(() => (services ?? []).filter((s) => {
     if (filterTeacher && s.teacher !== filterTeacher) return false;
     if (filterGroupType && s.group_type !== filterGroupType) return false;
@@ -341,7 +340,7 @@ export function ScheduleSection() {
                     {item.group_type && (
                       <div className={styles.detailRow}>
                         <span className={styles.detailLabel}>{tMain("tarif-group")}</span>
-                        <span className={styles.detailValue}>{item.group_type}</span>
+                        <span className={styles.detailValue}>{item.group_type ? uniqueGroupTypes.find(it => it.value === item.group_type)?.label : item.group_type}</span>
                       </div>
                     )}
                     {item.branch && (

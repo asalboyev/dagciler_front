@@ -8,10 +8,13 @@ import { FaqSection } from "@/widgets/faq";
 import styles from "./page.module.scss";
 import { useAboutSchool } from "@/entities/about-school";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useBookingModal } from "@/shared/lib/booking-modal";
 
 export default function CoursePage() {
   const { data } = useAboutSchool()
   const t = useTranslations('main')
+  const { open } = useBookingModal()
   return (
     <div className="pageOffset">
       <div className="container">
@@ -20,21 +23,25 @@ export default function CoursePage() {
           subtitle={`${data?.subtitle}`}
           bannerImage={`${data?.image ? data?.image : ""}`}
         >
-          <Button variant="red" size="lg" className={`${styles.btn}`}>
+          <Button variant="red" size="lg" className={`${styles.btn}`} onClick={() => open({ variant: "call" })}>
             {t('course-btn')}
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className={`${styles.btn} ${styles.outlineBtn}`}
-          >
-            {t('schedule-button')}
-          </Button>
+          <Link href={"#schedule"}>
+            <Button
+              variant="outline"
+              size="lg"
+              className={`${styles.btn} ${styles.outlineBtn}`}
+            >
+              {t('schedule-button')}
+            </Button>
+          </Link>
         </DynamicPageBanner>
       </div>
       <CourseDetail />
       <PricingSection isContact />
-      <ScheduleSection />
+      <div id="schedule">
+        <ScheduleSection />
+      </div>
       <FaqSection />
     </div>
   );

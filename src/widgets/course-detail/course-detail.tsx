@@ -18,7 +18,6 @@ export function CourseDetail() {
   const { data: school } = useAboutSchool()
   const { data: siteInfo } = useSiteInfo()
   const t = useTranslations('main')
-  console.log(siteInfo)
   const hasContent = !isContentEmpty(course?.content);
 
   return (
