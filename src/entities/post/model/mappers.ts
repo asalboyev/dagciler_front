@@ -13,6 +13,7 @@ export function toPost(raw: any): Post {
     type: raw.type ?? raw.category ?? null,
     published_at: raw.date ?? raw.published_at ?? raw.created_at ?? "",
     created_at: raw.created_at ?? raw.date ?? "",
+    categories: raw.categories
   };
 }
 

@@ -9,6 +9,16 @@ export interface Post {
   image: ApiImage;
   type: string | null;
   published_at: string;
+  categories?: {
+    id: string
+    title?: string
+    slug: string;
+    images?: {
+      lg?: string;
+      md?: string;
+      sm?: string;
+    } | null;
+  }[];
   created_at: string;
 }
 

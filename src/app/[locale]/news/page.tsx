@@ -45,9 +45,12 @@ export default function NewsPage() {
 
   const filteredPosts = useMemo(() => {
     if (!activeType) return allPosts;
-
+    console.log(allPosts)
+    console.log(activeType)
     return allPosts.filter(
-      (post) => post.category?.slug === activeType
+      (post) =>
+        Array.isArray(post.categories) &&
+        post.categories.some((cat) => cat.slug === activeType)
     );
   }, [allPosts, activeType]);
 
