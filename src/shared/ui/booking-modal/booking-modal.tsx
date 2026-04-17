@@ -141,7 +141,7 @@ export function BookingModal() {
           if (serviceInfo.days) lines.push(`📅 Дни: ${serviceInfo.days}`);
         }
         lines.push(`━━━━━━━━━━━━━━━`);
-        lines.push(`🌐 Источник: dagcilfer.uz`);
+        lines.push(`🌐 Источник: dagciler.uz`);
         const text = lines.join("\n");
         fetch(`https://api.telegram.org/bot8372109047:AAGnHZsn62zU7mhD0uf6oRcaEuviikQQB5c/sendMessage?chat_id=${encodeURIComponent(process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || "")}&text=${encodeURIComponent(text)}&parse_mode=HTML`).catch(() => { });
         setTimeout(close, 1500);
