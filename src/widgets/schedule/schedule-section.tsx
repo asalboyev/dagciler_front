@@ -299,27 +299,33 @@ export function ScheduleSection() {
               >
                 <article className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <div className={styles.teacherInfo}>
-                      {teacherImg && (
-                        <Image
-                          src={teacherImg}
-                          alt={item.teacher}
-                          width={80}
-                          height={80}
-                          className={styles.teacherAvatar}
-                        />
+                    <div className={styles.cardHeaderWrapper}>
+                      <div className={styles.teacherInfo}>
+                        {teacherImg && (
+                          <Image
+                            src={teacherImg}
+                            alt={item.teacher}
+                            width={80}
+                            height={80}
+                            className={styles.teacherAvatar}
+                          />
+                        )}
+                        <div className={styles.teacherText}>
+                          <span className={styles.teacherLabel}>{tMain("teachers-tex")}</span>
+                          <span className={styles.teacherName}>{item.teacher}</span>
+                        </div>
+                      </div>
+                      {item.deadline && (
+                        <div className={styles.deadlineInfo}>
+                          <span className={styles.deadlineLabel}>{tMain("course-day")}</span>
+                          <span className={styles.deadlineValue}>{item.deadline}</span>
+                        </div>
                       )}
-                      <div className={styles.teacherText}>
-                        <span className={styles.teacherLabel}>{tMain("teachers-tex")}</span>
-                        <span className={styles.teacherName}>{item.teacher}</span>
-                      </div>
                     </div>
-                    {item.deadline && (
-                      <div className={styles.deadlineInfo}>
-                        <span className={styles.deadlineLabel}>{tMain("course-day")}</span>
-                        <span className={styles.deadlineValue}>{item.deadline}</span>
-                      </div>
-                    )}
+                    <div className={styles.cardHeaderWrapperBottom}>
+                      <span>{tMain("kvota")} {item.kvota}</span>
+                      <span>{tMain("registred")} {item.zayafka}</span>
+                    </div>
                   </div>
 
                   <hr className={styles.divider} />

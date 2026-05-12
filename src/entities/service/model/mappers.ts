@@ -25,5 +25,7 @@ export function toService(raw: any): Service {
       "",
     price: String(raw.price ?? ""),
     deadline: raw.application_deadline ?? raw.deadline ?? "",
+    kvota: raw.kvota ?? "",
+    zayafka: raw.zayafka ?? "",
   };
 }

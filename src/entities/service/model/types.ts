@@ -12,4 +12,6 @@ export interface Service {
   branch: string;
   price: string;
   deadline: string;
+  kvota: number;
+  zayafka: number;
 }
